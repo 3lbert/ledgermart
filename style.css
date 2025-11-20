@@ -88,15 +88,18 @@ img{
 }
 
 .character.bargain-hunter img {
-    content: url('https://api.dicebear.com/8.x/pixel-art/svg?seed=bargain-hunter&clothing=variant01');
+    width: 30%;
+    content: url('customer_a.png');
 }
 
 .character.average-joe img {
-    content: url('https://api.dicebear.com/8.x/pixel-art/svg?seed=average-joe&clothing=variant12');
+    width: 30%;
+    content: url('customer_a.png');
 }
 
 .character.big-spender img {
-    content: url('https://api.dicebear.com/8.x/pixel-art/svg?seed=big-spender&clothing=variant23');
+    width: 30%;
+    content: url('customer_a.png');
 }
 
 .thought-bubble {
