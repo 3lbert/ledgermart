@@ -35,6 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const introScreen = document.getElementById('intro-screen');
     const startGameButton = document.getElementById('start-game-button');
     const tutorialButton = document.getElementById('tutorial-button');
+    const tutorialModal = document.getElementById('tutorial-modal');
+    const tutorialCloseButton = document.getElementById('tutorial-close-button');
+    const prevTutorialButton = document.getElementById('prev-tutorial-button');
+    const nextTutorialButton = document.getElementById('next-tutorial-button');
+    const tutorialPages = document.querySelectorAll('.tutorial-page');
+    let currentTutorialPage = 0;
     const gameContainer = document.querySelector('.game-container');
     const alienAlarm = document.getElementById('alien-alarm');
     const alienWarningOverlay = document.getElementById('alien-warning-overlay');
@@ -89,8 +95,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tutorialButton.addEventListener('click', () => {
         uiClick.play();
-        showModal('Tutorial coming soon! This game is about managing a small shop (Toserba). Buy stock, set prices, and sell to customers to make a profit. Good luck!');
+        tutorialModal.style.display = 'flex';
+        currentTutorialPage = 0;
+        showTutorialPage(currentTutorialPage);
     });
+
+    tutorialCloseButton.addEventListener('click', () => {
+        uiClick.play();
+        tutorialModal.style.display = 'none';
+    });
+
+    nextTutorialButton.addEventListener('click', () => {
+        if (currentTutorialPage < tutorialPages.length - 1) {
+            currentTutorialPage++;
+            showTutorialPage(currentTutorialPage);
+        }
+    });
+
+    prevTutorialButton.addEventListener('click', () => {
+        if (currentTutorialPage > 0) {
+            currentTutorialPage--;
+            showTutorialPage(currentTutorialPage);
+        }
+    });
+
+    function showTutorialPage(index) {
+        tutorialPages.forEach((page, i) => {
+            page.style.display = i === index ? 'block' : 'none';
+        });
+        prevTutorialButton.disabled = index === 0;
+        nextTutorialButton.disabled = index === tutorialPages.length - 1;
+    }
 
     settingsButton.addEventListener('click', () => {
         uiClick.play();
