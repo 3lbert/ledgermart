@@ -7,22 +7,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 flex items-center justify-center p-4">
-    <div id="intro-screen" class="absolute inset-0 bg-black bg-opacity-75 flex flex-col items-center justify-center z-50">
-        <img src="2.png" alt="Ledger Mart Game Logo" alt="Ledger Mart Game Logo" class="logo-img">
-        <!-- <h1 class="text-6xl font-bold mb-4"><span style="color: #00C2F5;">Tos</span><span style="color: #FDB606;">e</span><span style="color: #F53195;">rba</span></h1> -->
-        <div>
-            <button id="start-game-button" class="control-button bg-green-500 hover:bg-green-600">Start Game</button>
+<body>
+    <div id="intro-screen" class="absolute inset-0 flex flex-col items-center justify-center gap-4 z-50">
+        <img src="2.png" alt="LedgerMart Game Logo" class="logo block mx-auto max-w-[80%] w-[600px] -translate-y-[40px]">
+        <div class="flex flex-col gap-4 w-full max-w-xs bg-amber-300 border-4 border-amber-800 shadow-[8px_8px_0_#6c3f10] rounded-xl p-6 w-[380px] items-center mt-[-60px]">
+            <button id="start-game-button" class="w-full py-3 rounded-lg bg-amber-200 border-2 border-amber-700 shadow-[3px_3px_0_#8b5a27] text-brown-800 font-semibold tracking-wide transition-all duration-150 hover:bg-amber-300 hover:shadow-[1px_1px_0_#8b5a27]">Start Game</button>
+            <button id="tutorial-button" class="w-full py-3 rounded-lg bg-blue-200 border-2 border-blue-700 shadow-[3px_3px_0_#274f8b] text-blue-900 font-semibold tracking-wide transition-all duration-150 hover:bg-blue-300 hover:shadow-[1px_1px_0_#274f8b]">Tutorial</button>
+            <button id="settings-button" class="w-full py-3 rounded-lg bg-gray-200 border-2 border-gray-600 shadow-[3px_3px_0_#4b4b4b] text-gray-900 font-semibold tracking-wide transition-all duration-150 hover:bg-gray-300 hover:shadow-[1px_1px_0_#4b4b4b]">Settings</button> 
+            <button id="credits-button" class="w-full py-3 rounded-lg bg-purple-200 border-2 border-purple-700 shadow-[3px_3px_0_#5a278b] text-purple-900 font-semibold tracking-wide transition-all duration-150 hover:bg-purple-300 hover:shadow-[1px_1px_0_#5a278b]">Credits</button>
         </div>
-        <div>
-            <button id="tutorial-button" class="control-button bg-blue-500 hover:bg-blue-600">Tutorial</button>
-        </div>
-        <div>
-            <button id="settings-button" class="control-button bg-gray-400 hover:bg-gray-600">Settings</button>
-        </div>
-        <div>
-            <button id="credits-button" class="control-button bg-purple-500 hover:bg-purple-600">Credits</button>
-        </div>
+
     </div>
 
     <div class="game-container hidden">
@@ -155,49 +149,66 @@
         </div>
     </div>
 
-    <div id="tutorial-modal" class="modal">
-        <div class="modal-content">
-            <h2 class="text-2xl font-bold mb-4">Tutorial</h2>
-            <div id="tutorial-content">
-                <div class="tutorial-page">
-                    <img src="ChatGPT Image 7 Nov 2025, 10.32.53.png" alt="Tutorial Image 1" class="mb-4">
-                    <p>This is the first page of the tutorial. Explain the basic controls here.</p>
-                </div>
-                <div class="tutorial-page" style="display: none;">
-                    <img src="https://placehold.co/600x400/d7c4b6/a1887f?text=Page+2" alt="Tutorial Image 2" class="mb-4">
-                    <p>This is the second page. You can explain more advanced concepts here.</p>
-                </div>
-            </div>
-            <div class="flex justify-between mt-4">
-                <button id="prev-tutorial-button" class="control-button">Previous</button>
-                <button id="next-tutorial-button" class="control-button">Next</button>
-            </div>
-            <button id="tutorial-close-button" class="control-button mt-4">Close</button>
-        </div>
-    </div>
+    <!-- SETTINGS MODAL (NEW VERSION) -->
+<div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-[999]">
+    <div class="relative bg-amber-300 border-4 border-amber-800 shadow-[10px_10px_0_#6c3f10] rounded-xl p-6 w-[360px]">
 
-    <div id="settings-modal" class="modal">
-        <div class="modal-content">
-            <h2 class="text-2xl font-bold mb-4">Settings</h2>
-            <div class="flex items-center justify-between mb-4">
-                <label for="master-volume-slider" class="mr-4 settings-label">Master Volume</label>
-                <input type="range" id="master-volume-slider" min="0" max="1" step="0.1" value="1" class="w-full">
-            </div>
-            <div class="flex items-center justify-between mb-4">
-                <label for="music-volume-slider" class="mr-4 settings-label">Music Volume</label>
-                <input type="range" id="music-volume-slider" min="0" max="1" step="0.1" value="1" class="w-full">
-            </div>
-            <div class="flex items-center justify-between mb-4">
-                <label for="sfx-volume-slider" class="mr-4 settings-label">SFX Volume</label>
-                <input type="range" id="sfx-volume-slider" min="0" max="1" step="0.1" value="1" class="w-full">
-            </div>
-            <div class="flex items-center justify-between">
-                <label for="mute-button" class="mr-4 settings-label">Mute All</label>
-                <button id="mute-button" class="control-button">Mute</button>
-            </div>
-            <button id="settings-close-button" class="control-button mt-4">Close</button>
+        <h2 class="text-3xl font-extrabold text-amber-900 mb-4 text-center">Settings</h2>
+
+        <!-- MASTER VOLUME -->
+        <div class="flex items-center gap-4 mb-4">
+            <i data-lucide="volume-2" class="w-6 h-6"></i>
+            <input 
+                type="range" 
+                id="master-volume-slider" 
+                min="0" max="1" step="0.1" value="1"
+                class="w-full accent-amber-700"
+            >
         </div>
+
+        <!-- MUSIC VOLUME -->
+        <div class="flex items-center gap-4 mb-4">
+            <i data-lucide="music" class="w-6 h-6"></i>
+            <input 
+                type="range" 
+                id="music-volume-slider" 
+                min="0" max="1" step="0.1" value="1"
+                class="w-full accent-blue-700"
+            >
+        </div>
+
+        <!-- SFX VOLUME -->
+        <div class="flex items-center gap-4 mb-4">
+            <i data-lucide="audio-lines" class="w-6 h-6"></i>
+            <input 
+                type="range" 
+                id="sfx-volume-slider" 
+                min="0" max="1" step="0.1" value="1"
+                class="w-full accent-purple-700"
+            >
+        </div>
+
+        <!-- MUTE BUTTON -->
+        <div class="flex items-center justify-between mb-3">
+            <button 
+                id="mute-button" 
+                class="px-4 py-2 rounded-lg bg-red-200 border-2 border-red-700 shadow-[3px_3px_0_#7a1f1f] text-red-900 font-semibold tracking-wide transition-all duration-100 hover:bg-red-300 hover:shadow-[1px_1px_0_#7a1f1f]"
+            >
+                <i data-lucide="volume-x"></i>
+            </button>
+        </div>
+
+        <!-- CLOSE BUTTON -->
+        <button 
+            id="settings-close-button" 
+            class="absolute top-3 right-3 bg-amber-300 border-2 border-amber-700 shadow-[3px_3px_0_#6c3f10] hover:shadow-[1px_1px_0_#6c3f10] w-10 h-10 flex items-center justify-center rounded-full"
+        >
+            <i data-lucide="x" class="w-5 h-5 text-amber-900"></i>
+        </button>
+
     </div>
+</div>
+
 
     <!-- Special Characters -->
 <div id="thief" class="character hidden">
@@ -213,5 +224,9 @@
     <audio id="ui-click" src="https://www.soundjay.com/buttons/sounds/button-4.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
