@@ -535,6 +535,7 @@ img {
 -------------------------------------------------- */
 .hint-container {
     position: absolute;
+    display: none;
     top: 170px;
     right: -250px;
     width: 300px;
@@ -599,7 +600,7 @@ img {
     justify-content: flex-start;
     align-items: center;
 
-    background-color: #f7f1e6;
+    background-color: #ffff;
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 

@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startGameButton.addEventListener('click', () => {
         introScreen.style.display = 'none';
         gameContainer.classList.remove('hidden');
+        hintContainer.style.display = 'block';
         // Initial UI render and game start
         updateUI();
         manageCustomers();
