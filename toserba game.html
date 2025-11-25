@@ -11,10 +11,30 @@
     <div id="intro-screen" class="absolute inset-0 flex flex-col items-center justify-center gap-4 z-50">
         <img src="2.png" alt="LedgerMart Game Logo" class="logo block mx-auto max-w-[80%] w-[600px] -translate-y-[40px]">
         <div class="flex flex-col gap-4 w-full max-w-xs bg-amber-300 border-4 border-amber-800 shadow-[8px_8px_0_#6c3f10] rounded-xl p-6 w-[380px] items-center mt-[-60px]">
-            <button id="start-game-button" class="w-full py-3 rounded-lg bg-amber-200 border-2 border-amber-700 shadow-[3px_3px_0_#8b5a27] text-brown-800 font-semibold tracking-wide transition-all duration-150 hover:bg-amber-300 hover:shadow-[1px_1px_0_#8b5a27]">Start Game</button>
-            <button id="tutorial-button" class="w-full py-3 rounded-lg bg-blue-200 border-2 border-blue-700 shadow-[3px_3px_0_#274f8b] text-blue-900 font-semibold tracking-wide transition-all duration-150 hover:bg-blue-300 hover:shadow-[1px_1px_0_#274f8b]">Tutorial</button>
-            <button id="settings-button" class="w-full py-3 rounded-lg bg-gray-200 border-2 border-gray-600 shadow-[3px_3px_0_#4b4b4b] text-gray-900 font-semibold tracking-wide transition-all duration-150 hover:bg-gray-300 hover:shadow-[1px_1px_0_#4b4b4b]">Settings</button> 
-            <button id="credits-button" class="w-full py-3 rounded-lg bg-purple-200 border-2 border-purple-700 shadow-[3px_3px_0_#5a278b] text-purple-900 font-semibold tracking-wide transition-all duration-150 hover:bg-purple-300 hover:shadow-[1px_1px_0_#5a278b]">Credits</button>
+<button id="start-game-button"
+  class="w-full py-3 rounded-lg 
+  bg-[#D35837] border-2 border-[#A43F25] 
+  shadow-[3px_3px_0_#7C2F1B] text-white font-semibold 
+  tracking-wide transition-all duration-150 
+  hover:bg-[#E3785C] hover:shadow-[1px_1px_0_#7C2F1B]">
+  Start Game
+</button>
+
+<button id="tutorial-button"
+  class="w-full py-3 rounded-lg bg-blue-600 border-2 border-blue-800 shadow-[3px_3px_0_#173971] text-white font-semibold tracking-wide transition-all duration-150 hover:bg-blue-700 hover:shadow-[1px_1px_0_#173971]">
+  Tutorial
+</button>
+
+<button id="settings-button"
+  class="w-full py-3 rounded-lg bg-gray-700 border-2 border-gray-900 shadow-[3px_3px_0_#2b2b2b] text-white font-semibold tracking-wide transition-all duration-150 hover:bg-gray-800 hover:shadow-[1px_1px_0_#2b2b2b]">
+  Settings
+</button>
+
+<button id="credits-button"
+  class="w-full py-3 rounded-lg bg-purple-700 border-2 border-purple-900 shadow-[3px_3px_0_#45157a] text-white font-semibold tracking-wide transition-all duration-150 hover:bg-purple-800 hover:shadow-[1px_1px_0_#45157a]">
+  Credits
+</button>
+
         </div>
 
     </div>
@@ -83,16 +103,58 @@
         </div>
 
         <!-- Item Stands -->
-        <div id="item-stands-container" class="stands-container">
+        <div id="item-stands-container" class="stands-container transition-all duration-300">
             <!-- Item stands will be dynamically generated here -->
         </div>
 
-        <div class="control-panel">
-            <button id="restock-button" class="control-button bg-blue-500 hover:bg-blue-600">Restock</button>
-            <button id="set-prices-button" class="control-button bg-blue-500 hover:bg-blue-600">Set Prices</button>
-            <button id="view-logbook-button" class="control-button bg-blue-500 hover:bg-blue-600">View Reports</button>
-            <button id="next-day-button" class="control-button bg-green-500 hover:bg-green-600">Next Day</button>
-        </div>
+
+<div class="control-panel flex justify-center gap-3 bg-amber-300 py-4 px-3 border-4 border-amber-800 items-center rounded-xl backdrop-blur-sm shadow-[8px_8px_0_#6c3f10] mt-2">
+
+    <button id="restock-button"
+        class="w-full flex-1 py-3 px-4 rounded-lg
+    bg-blue-600 border-2 border-blue-800
+    shadow-[3px_3px_0_#1e3a8a]
+    text-white font-semibold tracking-wide text-center whitespace-nowrap
+    transition-all duration-150
+    hover:bg-blue-700 hover:shadow-[1px_1px_0_#1e3a8a]">
+        Restock
+    </button>
+
+    <button id="set-prices-button"
+    class="flex-1 py-3 px-4 rounded-lg
+    bg-sky-600 border-2 border-sky-800
+    shadow-[3px_3px_0_#075985]
+    text-white font-semibold tracking-wide text-center whitespace-nowrap
+    transition-all duration-150
+    hover:bg-sky-700 hover:shadow-[1px_1px_0_#075985]">
+        Set Prices
+    </button>
+
+    <button id="view-logbook-button"
+    class="w-full flex-1 py-3 px-4 rounded-lg
+    bg-purple-600 border-2 border-purple-900
+    shadow-[3px_3px_0_#4c1d95]
+    text-white font-semibold tracking-wide text-center whitespace-nowrap
+    transition-all duration-150
+    hover:bg-purple-700 hover:shadow-[1px_1px_0_#4c1d95">
+        View Reports
+    </button>
+
+    <button id="next-day-button"
+    class="flex-1 py-3 px-4 rounded-lg
+    bg-green-600 border-2 border-green-800
+    shadow-[3px_3px_0_#14532d]
+    text-white font-semibold tracking-wide text-center whitespace-nowrap
+    transition-all duration-150
+    hover:bg-green-700 hover:shadow-[1px_1px_0_#14532d]">
+        Next Day
+    </button>
+
+</div>
+
+
+
+
     </div>
 
     <div id="alien-warning-overlay" class="alien-warning" style="display: none;">
@@ -123,14 +185,18 @@
             <button id="daily-report-close-button" class="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full">Close</button>
         </div>
     </div>
+<div id="end-of-day-report-modal" class="modal fixed inset-0 flex items-center justify-center bg-black/60 z-50" style="display: none;">
+    <div class="modal-content bg-white/95 text-gray-800 w-full max-w-md p-6 rounded-lg shadow-xl border border-gray-300[clip-path:polygon(0_0,100%_0,100%_95%,0_95%,0_90%,5%_95%,10%_90%,15%_95%,20%_90%,25%_95%,30%_90%,35%_95%,40%_90%,45%_95%,50%_90%,55%_95%,60%_90%,65%_95%,70%_90%,75%_95%,80%_90%,85%_95%,90%_90%,95%_95%,100%_90%,100%_100%,0_100%)]">
+        <h2 class="text-xl font-bold text-center mb-2 font-mono">End of Day Receipt</h2>
+        <div class="border-t border-dashed border-gray-400 my-3"></div>
 
-    <div id="end-of-day-report-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <h2 class="text-2xl font-bold mb-4">End of Day Report</h2>
-            <div id="end-of-day-report-content"></div>
-            <button id="end-of-day-report-close-button" class="control-button mt-4">Continue</button>
-        </div>
+        <!-- Dynamic content from JS -->
+        <div id="end-of-day-report-content" class="font-mono text-sm leading-relaxed"></div>
+        <div class="border-t border-dashed border-gray-400 my-4"></div>
+        <button id="end-of-day-report-close-button"class="w-full py-3 rounded-lg bg-gray-200 border-2 border-purple-700 shadow-[3px_3px_0_#5a278b] text-purple-900 font-semibold tracking-wide transition-all duration-150 hover:bg-purple-300 hover:shadow-[1px_1px_0_#5a278b]">Continue</button>
     </div>
+</div>
+
 
 
 

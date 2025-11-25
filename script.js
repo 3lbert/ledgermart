@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     endOfDayReportCloseButton.addEventListener('click', () => {
         endOfDayReportModal.style.display = 'none';
         controlPanel.style.display = 'flex'; // Show management buttons
+        itemStandsContainer.classList.add("mb-20");
     });
 
     // --- Game Functions ---
@@ -799,6 +800,7 @@ function hideThoughtBubble(character) {
     game.weather = Math.random() > 0.5 ? 'Cerah' : 'Hujan';
     gameModal.style.display = 'none';
     controlPanel.style.display = 'none';
+    itemStandsContainer .classList.remove("mb-20");
     updateUI();
     manageCustomers();
     // Increase event chances by 10% each new day
