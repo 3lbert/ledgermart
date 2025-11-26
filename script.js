@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alien.style.top = '';
         alien.dataset.alienId = id;
         alien.dataset.hits = Math.floor(Math.random() * 3) + 1; // 1-3 hits
-        alien.innerHTML = `<img src="https://placehold.co/200x250/00ff00/000000?text=Alien"><div class="hit-counter">${alien.dataset.hits}</div>`;
+        alien.innerHTML = `<img src="alien.png"><div class="hit-counter">${alien.dataset.hits}</div>`;
         return alien;
     }
     
@@ -867,4 +867,5 @@ function hideThoughtBubble(character) {
             handleSetPrices();
         });
     }
+
 });
