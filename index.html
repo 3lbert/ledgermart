@@ -7,18 +7,70 @@
   <link rel="stylesheet" href="Splash.css">
 </head>
 <body>
+
   <!-- Splash Screen -->
   <div id="splash">
     <img src="BU-SOC Accounting Laboratory-01.png" alt="Logo" class="splash-logo">
+    <div id="loading-text" style="margin-top:15px; color:white; font-size:18px;">
+      Loading...
+    </div>
   </div>
 
   <script>
     window.addEventListener('load', () => {
-      setTimeout(() => {
+
+      // --- Daftar file di root folder (SESUAIKAN dengan punya kamu) ---
+      const assets = [
+        "2.png",
+        "alien.png",
+        "customer_a.png",
+        "customer_b.png",
+        "customer_c.png",
+        "thief_run.png"
+      ];
+
+      let loaded = 0;
+      const loadingText = document.getElementById("loading-text");
+
+      function preloadAsset(src) {
+        return new Promise((resolve) => {
+          let el;
+
+          // Jika audio
+          if (src.endsWith(".mp3") || src.endsWith(".wav")) {
+            el = new Audio();
+            el.src = src;
+            el.addEventListener("canplaythrough", resolve);
+          } 
+          // Jika gambar
+          else {
+            el = new Image();
+            el.src = src;
+            el.onload = resolve;
+          }
+        });
+      }
+
+      async function preloadAll() {
+        for (let src of assets) {
+          await preloadAsset(src);
+          loaded++;
+
+          // Update status loading (%)
+          let percent = Math.floor((loaded / assets.length) * 100);
+          loadingText.textContent = "Loading... " + percent + "%";
+        }
+
+        // Setelah semua loaded → pindah ke game
         window.location.href = "toserba game.html";
-      }, 5000);
+      }
+
+      preloadAll();
     });
   </script>
+
 </body>
 </html>
+
+
 
