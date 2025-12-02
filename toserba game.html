@@ -97,14 +97,14 @@
 </div>
 
         <div class="timer-panel">
-            <div id="day-display-cover"></div>
-            <div id="day-display-back"></div>
+            <!-- <div id="day-display-cover"></div>
+            <div id="day-display-back"></div> -->
             <div id="day-display-front">Day: 1</div>
-            <div id="timer-display-cover"></div>
-            <div id="timer-display-back"></div>
-            <div id="timer-display-front">Time: 00:00:00</div>
-            <div id="weather-display-cover"></div>
-            <div id="weather-display-back"></div>
+            <!-- <div id="timer-display-cover"></div>
+            <div id="timer-display-back"></div> -->
+            <div id="timer-display-front">Time: 00:00</div>
+            <!-- <div id="weather-display-cover"></div>
+            <div id="weather-display-back"></div> -->
             <div id="weather-display-front">Cerah</div>
             <div id="event-chance-display" style="margin-top: 8px; font-size: 14px; color: #6b5247;">
     Alien Chance: <span id="alien-chance-value"></span> | 
@@ -232,9 +232,9 @@
     </div>
 
     <div id="game-modal" class="modal">
-        <div id="modal-content" class="modal-content">
-            <p id="modal-text" class="text-gray-800 text-lg"></p>
-            <button id="modal-close-button">OK</button>
+        <div id="modal-content" class="relative bg-amber-300 border-4 border-amber-800 shadow-[10px_10px_0_#6c3f10] rounded-xl p-6 w-[500px]">
+            <p id="modal-text" class="text-xl font-bold text-amber-900 mb-4 text-center"></p>
+            <button id="modal-close-button" class="flex-1 py-3 px-4 rounded-lg bg-sky-600 border-2 border-sky-800 shadow-[3px_3px_0_#075985] text-white font-semibold tracking-wide text-center whitespace-nowrap transition-all duration-150 hover:bg-sky-700 hover:shadow-[1px_1px_0_#075985]">OK</button>
         </div>
     </div>
 
@@ -270,7 +270,7 @@
         <div class="flex items-center gap-4 mb-4">
             <i data-lucide="audio-lines" class="w-6 h-6"></i>
             <input 
-                type="range" 
+                type="range" f
                 id="sfx-volume-slider" 
                 min="0" max="1" step="0.1" value="1"
                 class="w-full accent-purple-700"

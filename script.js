@@ -697,6 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
     function showModal(message, isHTML = false, isDailyReport = false) {
+        lucide.createIcons();
         modalText.innerHTML = ''; // Clear previous content
         if (isHTML) {
             modalText.innerHTML = message;
@@ -948,19 +949,35 @@ function hideThoughtBubble(character) {
     runDayTimer(35);
 }
 
-    function handleRestock() {
-        let restockMessage = `<h3>--- Restock Phase ---</h3><p>Current Money: ${game.money}</p><p>Select an item to restock. Prices:</p>`;
-        game.items.forEach(item => {
-            restockMessage += `
-                <div class="flex justify-between items-center my-2 p-2 rounded-lg bg-gray-100">
-                    <span>${item.name} (Stock: ${item.stock}, Buy: ${item.buyPrice})</span>
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-full"
-                        onclick="restockItem('${item.name}')">Buy 1</button>
-                </div>
-            `;
-        });
-        showModal(restockMessage, true);
-    }
+function handleRestock() {
+    let restockMessage = `
+        <h3>--- Restock Phase ---</h3>
+        <p>Current Money: ${game.money}</p>
+        <p>Select an item to restock. Prices:</p>
+
+        <div class="grid grid-flow-col grid-rows-2 gap-3 mt-3">
+    `;
+
+    game.items.forEach(item => {
+        restockMessage += `
+            <div class="p-3 rounded-lg bg-gray-100 flex flex-col justify-between">
+                <span class="text-sm font-medium">${item.name} (Stock: ${item.stock}, Buy: ${item.buyPrice})</span>
+          <button 
+    class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg
+           w-12 h-12 flex justify-center items-center" onclick="restockItem('${item.name}')"
+>
+    <i data-lucide="shopping-cart"></i>
+</button>
+
+            </div>
+        `;
+    });
+    restockMessage += `</div>`;
+    showModal(restockMessage, true);
+    lucide.createIcons();
+}
+
+
 
     window.restockItem = (itemName) => {
         const item = game.items.find(i => i.name === itemName);
@@ -973,36 +990,104 @@ function hideThoughtBubble(character) {
         }
     }
 
-    function handleSetPrices() {
-        let pricesMessage = `<h3>--- Set Prices Phase ---</h3><p>Adjust your prices:</p>`;
-        game.items.forEach(item => {
-            pricesMessage += `
-                <div class="flex justify-between items-center my-2 p-2 rounded-lg bg-gray-100">
-                    <span>${item.name} (Buy: ${item.buyPrice}, Current Sell: ${item.sellPrice})</span>
-                    <input type="number" id="price-input-${item.name}" value="${item.sellPrice}"
-                        class="w-20 text-right border rounded-lg px-2">
-                </div>
-            `;
-        });
+
+
+
+
+
+
+// ==============================
+//  HANDLE SET PRICE MODAL (FIXED)
+// ==============================
+function handleSetPrices() {
+    let pricesMessage = `
+        <h3 class="text-center font-bold mb-3">--- Set Prices Phase ---</h3>
+        <div class="grid grid-cols-5 gap-4">
+    `;
+
+    game.items.forEach(item => {
         pricesMessage += `
-            <div class="mt-4 text-center">
-                <button id="save-prices-btn" class="control-button bg-green-500 hover:bg-green-600">Save Prices</button>
-            </div>`;
-        showModal(pricesMessage, true);
+<div class="flex flex-col bg-gray-100 p-3 rounded-lg shadow-lg">
+    <span class="font-semibold text-xs">${item.name}</span>
+    <span class="text-xs text-gray-600">Buy: ${item.buyPrice}, Sell: ${item.sellPrice}</span>
 
-        document.getElementById('save-prices-btn').addEventListener('click', () => {
-            game.items.forEach(item => {
-                const inputElement = document.getElementById(`price-input-${item.name}`);
-                if (inputElement) {
-                    const newPrice = parseInt(inputElement.value);
-                    if (!isNaN(newPrice) && newPrice >= 0) {
-                        item.sellPrice = newPrice;
-                    }
+    <div class="flex items-center gap-1 mt-2">
+        <button 
+            type="button"
+            data-action="dec"
+            data-name="${item.name}"
+            class="w-7 h-7 flex items-center justify-center bg-red-400 hover:bg-red-500 text-white rounded price-btn">
+            –
+        </button>
+
+        <input 
+            type="number" 
+            id="price-input-${item.name}" 
+            value="${item.sellPrice}"
+            class="w-5 h-5 text-sm text-center rounded-lg bg-white border border-gray-300"
+        >
+
+        <button 
+            type="button"
+            data-action="inc"
+            data-name="${item.name}"
+            class="w-7 h-7 flex items-center justify-center bg-green-400 hover:bg-green-500 text-white rounded price-btn">
+            +
+        </button>
+    </div>
+</div>
+        `;
+    });
+
+    pricesMessage += `</div>`;
+
+    pricesMessage += `
+        <div class="mt-4 text-center">
+            <button id="save-prices-btn"
+                class="w-full flex-1 py-3 px-4 rounded-lg bg-purple-600 border-2 border-purple-900 shadow-[3px_3px_0_#4c1d95] text-white font-semibold tracking-wide text-center whitespace-nowrap transition-all duration-150 hover:bg-purple-700 hover:shadow-[1px_1px_0_#4c1d95">
+                Save Prices
+            </button>
+        </div>
+    `;
+
+    showModal(pricesMessage, true);
+
+    document.getElementById('save-prices-btn').addEventListener('click', () => {
+        game.items.forEach(item => {
+            const inputElement = document.getElementById(`price-input-${item.name}`);
+            if (inputElement) {
+                const newPrice = parseInt(inputElement.value);
+                if (!isNaN(newPrice) && newPrice >= 0) {
+                    item.sellPrice = newPrice;
                 }
-            });
-            alert("Prices have been updated!");
-            handleSetPrices();
+            }
         });
-    }
 
+        alert("Prices have been updated!");
+        handleSetPrices(); // reload modal
+    });
+}
+
+
+
+});
+
+document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".price-btn");
+    if (!btn) return;
+
+    const name = btn.dataset.name;
+    const action = btn.dataset.action;
+    const input = document.getElementById(`price-input-${name}`);
+
+    if (!input) return;
+
+    let v = parseInt(input.value) || 0;
+
+    if (action === "inc") v++;
+    if (action === "dec") v--;
+
+    if (v < 0) v = 0;
+
+    input.value = v;
 });

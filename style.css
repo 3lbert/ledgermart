@@ -78,6 +78,16 @@ img {
     box-shadow: none;
 }
 
+#modal-content input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#modal-content input::-webkit-outer-spin-button,
+#modal-content input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 
 /* --------------------------------------------------
    CHARACTERS
@@ -383,6 +393,7 @@ img {
 /* --------------------------------------------------
    CONTROL PANEL / BUTTONS
 -------------------------------------------------- */
+
 .control-panel {
     display: flex;
     gap: 1rem;
@@ -390,51 +401,6 @@ img {
     bottom: 2rem;
     z-index: 20;
 }
-
-/* .control-button {
-    position: relative;
-    padding: 0.75rem 1.5rem;
-
-    background-color: #4CAF50;
-    color: white;
-
-    border: none;
-    border-radius: 9999px;
-
-    font-weight: bold;
-    cursor: pointer;
-
-    margin-bottom: 20px;
-
-    overflow: hidden;
-
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-
-.control-button::before {
-    content: '';
-    position: absolute;
-
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.3s;
-}
-
-.control-button:hover::before {
-    left: 100%;
-}
-
-.control-button:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-} */
-
 
 /* --------------------------------------------------
    MODALS
@@ -459,31 +425,22 @@ img {
     width: 90%;
     max-width: 500px;
     max-height: 80vh;
-
     padding: 2rem;
-
     background-color: #f2e8d5;
     border: 5px solid #d4bda5;
     border-radius: 1rem;
-
     overflow-y: auto;
     text-align: center;
-
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .modal-content button {
     margin-top: 1rem;
     padding: 0.5rem 1rem;
-
-
-
     border: none;
     border-radius: 9999px;
-
     font-weight: bold;
     cursor: pointer;
-
     transition: background-color 0.2s, transform 0.2s;
 }
 
