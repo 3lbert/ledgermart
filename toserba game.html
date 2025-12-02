@@ -37,8 +37,22 @@
 
         </div>
 
+      <div id="tutorial-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-[1000]">
+        <div class="relative bg-amber-300 border-4 border-amber-800 shadow-[10px_10px_0_#6c3f10] rounded-xl p-6 w-[500px]">
+            <h2 class="text-3xl font-extrabold text-amber-900 mb-4 text-center">Tutorial</h2>
+            <div id="tutorial-content" class="text-amber-900">
+                <!-- Tutorial pages will be injected here -->
+            </div>
+            <div class="flex justify-between mt-4">
+                <button id="prev-tutorial-button" class="px-4 py-2 rounded-lg bg-gray-400 border-2 border-gray-600 shadow-[3px_3px_0_#4a4a4a] text-white font-semibold tracking-wide transition-all duration-150 hover:bg-gray-500 hover:shadow-[1px_1px_0_#4a4a4a]">Previous</button>
+                <button id="next-tutorial-button" class="px-4 py-2 rounded-lg bg-blue-600 border-2 border-blue-800 shadow-[3px_3px_0_#1e3a8a] text-white font-semibold tracking-wide transition-all duration-150 hover:bg-blue-700 hover:shadow-[1px_1px_0_#1e3a8a]">Next</button>
+            </div>
+            <button id="tutorial-close-button" class="absolute top-3 right-3 bg-amber-300 border-2 border-amber-700 shadow-[3px_3px_0_#6c3f10] hover:shadow-[1px_1px_0_#6c3f10] w-10 h-10 flex items-center justify-center rounded-full">
+                <i data-lucide="x" class="w-5 h-5 text-amber-900"></i>
+            </button>
+        </div>
     </div>
-
+    </div>
     <div class="game-container hidden">
         <!-- Background elements (placeholders for benches, counter, etc.) -->
         <div class="absolute inset-0 bg-contain bg-center bg-no-repeat" style="background-image: url('https://placehold.co/1200x800/d7c4b6/a1887f?text=Shop+Interior');"></div>
@@ -148,6 +162,15 @@
     transition-all duration-150
     hover:bg-green-700 hover:shadow-[1px_1px_0_#14532d]">
         Next Day
+    </button>
+       <button id="main-menu-button"
+    class="flex-1 py-3 px-4 rounded-lg
+    bg-yellow-500 border-2 border-yellow-700
+    shadow-[3px_3px_0_#7a6a1f]
+    text-white font-semibold tracking-wide text-center whitespace-nowrap
+    transition-all duration-150
+    hover:bg-yellow-600 hover:shadow-[1px_1px_0_#7a6a1f]">
+        Main Menu
     </button>
 
 </div>
@@ -285,8 +308,9 @@
 </div>
 
 
-    <audio id="alien-alarm" src="https://www.soundjay.com/buttons/sounds/button-7.mp3" preload="auto"></audio>
+  <audio id="alien-alarm" src="https://www.soundjay.com/buttons/sounds/button-7.mp3" preload="auto"></audio>
     <audio id="background-music" src="https://www.soundjay.com/ambient/sounds/shopping-mall-1.mp3" loop preload="auto"></audio>
+    <audio id="customer-murmur" src="https://www.soundjay.com/human/sounds/crowd-talking-1.mp3" loop preload="auto"></audio>
     <audio id="ui-click" src="https://www.soundjay.com/buttons/sounds/button-4.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>

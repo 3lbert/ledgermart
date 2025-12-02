@@ -50,7 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const muteButton = document.getElementById('mute-button');
     const backgroundMusic = document.getElementById('background-music');
     const uiClick = document.getElementById('ui-click');
+    const customerMurmur = document.getElementById('customer-murmur');
 
+    const tutorialModal = document.getElementById('tutorial-modal');
+    const tutorialCloseButton = document.getElementById('tutorial-close-button');
+    const prevTutorialButton = document.getElementById('prev-tutorial-button');
+    const nextTutorialButton = document.getElementById('next-tutorial-button');
+    const tutorialContent = document.getElementById('tutorial-content');
+    
     const customerPersonalities = {
         BARGAIN_HUNTER: { name: 'Bargain Hunter', moneyMultiplier: 0.7, impulse: 0.1 },
         AVERAGE_JOE: { name: 'Average Joe', moneyMultiplier: 1.0, impulse: 0.3 },
@@ -65,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const restockButton = document.getElementById('restock-button');
     const setPricesButton = document.getElementById('set-prices-button');
     const nextDayButton = document.getElementById('next-day-button');
+    const mainMenuButton = document.getElementById('main-menu-button'); 
     const dailyReportModal = document.getElementById('daily-report-modal');
     const dailyReportCloseButton = document.getElementById('daily-report-close-button');
     const prevReportPageButton = document.getElementById('prev-report-page-button');
@@ -76,13 +84,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const endOfDayReportCloseButton = document.getElementById('end-of-day-report-close-button');
     let dailyReports = [];
     let currentReportPage = 0;
+    
+    // --- Audio Initialization ---
+    let audioInitialized = false;
+    function initializeAudio() {
+        if (audioInitialized) return;
 
+        // Play background music and handle promise
+        const bgMusicPromise = backgroundMusic.play();
+        if (bgMusicPromise !== undefined) {
+            bgMusicPromise.catch(error => {
+                console.error("Background music playback failed:", error);
+            });
+        }
+
+        // Play customer murmur and handle promise
+        const murmurPromise = customerMurmur.play();
+        if (murmurPromise !== undefined) {
+            murmurPromise.catch(error => {
+                console.error("Customer murmur playback failed:", error);
+            });
+        }
+
+        audioInitialized = true;
+    }
     // --- Intro Screen Logic ---
     startGameButton.addEventListener('click', () => {
+        game.money = 1000;
         introScreen.style.display = 'none';
         gameContainer.classList.remove('hidden');
         hintContainer.style.display = 'block';
+        gameModal.style.display = 'none';
+        controlPanel.style.display = 'none';
+        itemStandsContainer.classList.remove("mb-20");
         // Initial UI render and game start
+        initializeAudio();
         updateUI();
         manageCustomers();
         runDayTimer(35);
@@ -90,7 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tutorialButton.addEventListener('click', () => {
         uiClick.play();
-        showModal('Tutorial coming soon! This game is about managing a small shop (Toserba). Buy stock, set prices, and sell to customers to make a profit. Good luck!');
+        tutorialModal.style.display = 'flex';
+        currentTutorialPage = 0;
+        showTutorialPage(currentTutorialPage);
     });
 
     settingsButton.addEventListener('click', () => {
@@ -103,28 +141,54 @@ document.addEventListener('DOMContentLoaded', () => {
         settingsModal.style.display = 'none';
     });
 
+    mainMenuButton.addEventListener('click', () => {
+        uiClick.play();
+        // Hide game and show intro
+        gameContainer.classList.add('hidden');
+        introScreen.style.display = 'flex';
+
+        // Stop all game sounds
+        backgroundMusic.pause();
+        customerMurmur.pause();
+
+        // Stop the day timer
+        if (dayTimerInterval) {
+            clearInterval(dayTimerInterval);
+        }
+
+        // Hide settings modal
+        settingsModal.style.display = 'none';
+    });
+
     masterVolumeSlider.addEventListener('input', (e) => {
         const volume = e.target.value;
-        alienAlarm.volume = volume;
-        backgroundMusic.volume = volume;
-        uiClick.volume = volume;
+        backgroundMusic.volume = volume * musicVolumeSlider.value;
+        customerMurmur.volume = volume * musicVolumeSlider.value;
+        alienAlarm.volume = volume * sfxVolumeSlider.value;
+        uiClick.volume = volume * sfxVolumeSlider.value;
     });
 
     musicVolumeSlider.addEventListener('input', (e) => {
-        backgroundMusic.volume = e.target.value;
+        const volume = e.target.value;
+        backgroundMusic.volume = masterVolumeSlider.value * volume;
+        customerMurmur.volume = masterVolumeSlider.value * volume;
     });
 
     sfxVolumeSlider.addEventListener('input', (e) => {
-        alienAlarm.volume = e.target.value;
-        uiClick.volume = e.target.value;
+        const volume = e.target.value;
+        alienAlarm.volume = masterVolumeSlider.value * volume;
+        uiClick.volume = masterVolumeSlider.value * volume;
     });
 
     muteButton.addEventListener('click', () => {
-        const muted = backgroundMusic.muted;
-        backgroundMusic.muted = !muted;
-        alienAlarm.muted = !muted;
-        uiClick.muted = !muted;
-        muteButton.textContent = muted ? 'Mute' : 'Unmute';
+        const isMuted = !backgroundMusic.muted;
+        backgroundMusic.muted = isMuted;
+        customerMurmur.muted = isMuted;
+        alienAlarm.muted = isMuted;
+        uiClick.muted = isMuted;
+        muteButton.innerHTML = isMuted ? '<i data-lucide="volume-x"></i>' : '<i data-lucide="volume-2"></i>'; 
+        lucide.createIcons();
+        saveAudioSettings();
     });
 
     hintContainer.addEventListener('click', () => {
@@ -163,6 +227,79 @@ document.addEventListener('DOMContentLoaded', () => {
         endOfDayReportModal.style.display = 'none';
         controlPanel.style.display = 'flex'; // Show management buttons
         itemStandsContainer.classList.add("mb-20");
+    });
+
+    // --- Tutorial Modal Logic ---
+    const tutorialPages = [
+        {
+            title: "Welcome to LedgerMart!",
+            content: "This tutorial will guide you through the basics of managing your own Toserba (small shop). Your goal is to make as much profit as possible.",
+            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Welcome"
+        },
+        {
+            title: "The Interface",
+            content: "On the main screen, you\'ll see your shop. At the top, you can see the current day, your money, and the weather. The control panel at the bottom has buttons to manage your shop.",
+            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Interface"
+        },
+        {
+            title: "Stocking Items",
+            content: "Click the \'Restock\' button to buy new items for your shop. You can choose from a variety of products. Keep an eye on your money!",
+            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Restock"
+        },
+        {
+            title: "Setting Prices",
+            content: "Use the \'Set Prices\' button to adjust the selling price of your items. Finding the right price is key to attracting customers and making a profit.",
+            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Set+Prices"
+        },
+        {
+            title: "Customers",
+            content: "Customers will come to your shop throughout the day. They will have items they want to buy in a thought bubble. Click on the customer to sell the item.",
+            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Customers"
+        },
+        {
+            title: "Special Events",
+            content: "Beware of thieves and aliens! They can appear randomly and disrupt your business. Click on them quickly to make them go away.",
+            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Special+Events"
+        },
+        {
+            title: "End of Day",
+            content: "At the end of each day, you\'ll get a report summarizing your sales and profits. Use this information to plan for the next day. Click \'Next Day\' to continue.",
+            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=End+of+Day"
+        }
+    ];
+
+    let currentTutorialPage = 0;
+
+    function showTutorialPage(pageIndex) {
+        const page = tutorialPages[pageIndex];
+        tutorialContent.innerHTML = `
+            <h3 class=\'text-xl font-bold mb-2\'>${page.title}</h3>
+            <img src=\'${page.img}\' alt=\'Tutorial Image\' class=\'w-full h-48 object-cover rounded-md mb-4 border-2 border-amber-800\'>
+            <p>${page.content}</p>
+        `;
+        prevTutorialButton.disabled = pageIndex === 0;
+        nextTutorialButton.disabled = pageIndex === tutorialPages.length - 1;
+    }
+
+    tutorialCloseButton.addEventListener('click', () => {
+        uiClick.play();
+        tutorialModal.style.display = 'none';
+    });
+
+    nextTutorialButton.addEventListener('click', () => {
+        uiClick.play();
+        if (currentTutorialPage < tutorialPages.length - 1) {
+            currentTutorialPage++;
+            showTutorialPage(currentTutorialPage);
+        }
+    });
+
+    prevTutorialButton.addEventListener('click', () => {
+        uiClick.play();
+        if (currentTutorialPage > 0) {
+            currentTutorialPage--;
+            showTutorialPage(currentTutorialPage);
+        }
     });
 
     // --- Game Functions ---
