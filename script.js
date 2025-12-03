@@ -980,27 +980,29 @@ function handleRestock() {
 
     game.items.forEach(item => {
         restockMessage += `
-            <div class="p-3 rounded-lg bg-gray-100 flex flex-col justify-between w-36 h-44">
+            <div class="flex flex-col justify-between w-36 h-44
+            bg-[#FFEAA7] p-3 rounded-xl 
+            shadow-[4px_4px_0px_#c88f00] border-2 border-[#d29b00]">
 <div class="flex flex-col items-center text-brown-700">
 
     <!-- Nama item -->
-    <div class="text-sm font-bold mb-1 whitespace-nowrap overflow-hidden text-ellipsis">
+    <div class="text-sm font-bold mb-1 whitespace-nowrap overflow-hidden text-ellipsis text-center">
         ${item.name}
     </div>
 
     <!-- Stock -->
-    <div class="grid grid-cols-[40px_10px_auto] text-xs mt-1">
-        <span class="text-left">Stock</span>
-        <span>:</span>
-        <span>${item.stock}</span>
-    </div>
+<div class="grid grid-cols-[30px_10px_40px] text-xs mt-1 justify-center">
+    <span class="text-left">Stock</span>
+    <span>:</span>
+    <span class="text-left">${item.stock}</span>
+</div>
 
     <!-- Buy Price -->
-    <div class="grid grid-cols-[40px_10px_auto] text-xs mt-0.5">
-        <span class="text-left">Buy</span>
-        <span>:</span>
-        <span>${item.buyPrice}</span>
-    </div>
+<div class="grid grid-cols-[30px_10px_40px] text-xs mt-0.5 justify-center">
+    <span class="text-left">Buy</span>
+    <span>:</span>
+    <span class="text-left">${item.buyPrice}</span>
+</div>
 
 </div>
 
@@ -1008,8 +1010,8 @@ function handleRestock() {
 
 
           <button 
-    class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg
-           w-12 h-12 flex justify-center items-center" onclick="restockItem('${item.name}')"
+    class="justify-center mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg
+           w-12 h-12 flex justify-center items-center mx-auto block" onclick="restockItem('${item.name}')"
 >
     <i data-lucide="shopping-cart"></i>
 </button>
@@ -1052,16 +1054,16 @@ function handleSetPrices() {
 
     game.items.forEach(item => {
         pricesMessage += `
-<div class="flex flex-col bg-gray-100 p-3 rounded-lg shadow-lg">
-    <span class="font-semibold text-xs">${item.name}</span>
-    <span class="text-xs text-gray-600">Buy: ${item.buyPrice}, Sell: ${item.sellPrice}</span>
+<div class="flex flex-col bg-[#FFEAA7] p-3 rounded-xl shadow-[4px_4px_0px_#c88f00] border-2 border-[#d29b00]">
+    <span class="font-semibold text-xs text-[#5a3b00]">${item.name}</span>
+    <span class="text-xs text-[#7a5a10]">Buy: ${item.buyPrice}, Sell: ${item.sellPrice}</span>
 
     <div class="flex items-center justify-center gap-2 mt-2">
         <button 
             type="button"
             data-action="dec"
             data-name="${item.name}"
-            class="w-7 h-7 flex items-center justify-center bg-red-400 hover:bg-red-500 text-white rounded price-btn">
+            class="w-7 h-7 flex items-center justify-center bg-[#D23A3A] hover:bg-[#B83232] text-white rounded-lg border-2 border-[#7A1E1E] shadow-[2px_2px_0px_#4E1212] price-btn">
             –
         </button>
 
@@ -1069,14 +1071,17 @@ function handleSetPrices() {
             type="number" 
             id="price-input-${item.name}" 
             value="${item.sellPrice}"
-            class="w-10 h-7 text-sm text-center rounded-md bg-white border border-gray-300"
+            class="w-10 h-7 text-sm text-center rounded-lg bg-white border-2 border-[#b8b8b8] shadow-[2px_2px_0px_#888]"
         >
 
         <button 
             type="button"
             data-action="inc"
             data-name="${item.name}"
-            class="w-7 h-7 flex items-center justify-center bg-green-400 hover:bg-green-500 text-white rounded price-btn">
+            class="w-7 h-7 flex items-center justify-center 
+                   bg-[#2FA846] hover:bg-[#27933D] text-white 
+                   rounded-lg border-2 border-[#1D5E28] 
+                   shadow-[2px_2px_0px_#123B19] price-btn">
             +
         </button>
     </div>
@@ -1087,15 +1092,25 @@ function handleSetPrices() {
     pricesMessage += `</div>`;
 
     pricesMessage += `
-        <div class="mt-4 text-center">
-            <button id="save-prices-btn"
-                class="w-full flex-1 py-3 px-4 rounded-lg bg-purple-600 border-2 border-purple-900 shadow-[3px_3px_0_#4c1d95] text-white font-semibold tracking-wide text-center whitespace-nowrap transition-all duration-150 hover:bg-purple-700 hover:shadow-[1px_1px_0_#4c1d95">
-                Save Prices
-            </button>
-        </div>
+<div class="mt-4 text-center">
+    <button id="save-prices-btn"
+        class="w-1/5 mx-auto flex items-center justify-center gap-2 py-3 px-4 rounded-lg 
+               bg-purple-600 border-2 border-purple-900 
+               shadow-[3px_3px_0_#4c1d95] 
+               text-white font-semibold tracking-wide 
+               whitespace-nowrap transition-all duration-150 
+               hover:bg-purple-700 hover:shadow-[1px_1px_0_#4c1d95]">
+        
+        <i data-lucide="save" class="w-5 h-5"></i>
+        <span>Save Prices</span>
+
+    </button>
+</div>
+
     `;
 
     showModal(pricesMessage, true);
+    lucide.createIcons();
 
     document.getElementById('save-prices-btn').addEventListener('click', () => {
         game.items.forEach(item => {
