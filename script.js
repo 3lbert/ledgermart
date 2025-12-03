@@ -21,6 +21,26 @@ document.addEventListener('DOMContentLoaded', () => {
         listrik: 20
     };
     
+    function resetGame() {
+    game.day = 1;
+    game.money = 1000;
+    game.weather = 'Cerah';
+    game.sewa = 50;
+    game.listrik = 20;
+
+    game.items = [
+        { name: "Sampo", buyPrice: 5, sellPrice: 8, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Shampoo' },
+        { name: "Sabun Mandi", buyPrice: 3, sellPrice: 5, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Soap' },
+        { name: "Sikat Gigi", buyPrice: 2, sellPrice: 4, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Toothbrush' },
+        { name: "Snack", buyPrice: 4, sellPrice: 7, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Snack' },
+        { name: "Coklat", buyPrice: 6, sellPrice: 9, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Chocolate' },
+        { name: "Pasta Gigi", buyPrice: 3, sellPrice: 6, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Toothpaste' },
+        { name: "Air Mineral", buyPrice: 1, sellPrice: 2, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Water' },
+        { name: "Lampu", buyPrice: 10, sellPrice: 15, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Lamp' },
+        { name: "Sabun Cuci Piring", buyPrice: 4, sellPrice: 7, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Dish+Soap' },
+        { name: "Batu Baterai", buyPrice: 2, sellPrice: 4, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Battery' }
+    ];
+   }
     // --- DOM Elements ---
     const dayDisplay = document.getElementById('day-display-front');
     const moneyDisplay = document.getElementById('money-display');
@@ -110,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // --- Intro Screen Logic ---
     startGameButton.addEventListener('click', () => {
-        game.money = 1000;
+        resetGame();
         introScreen.style.display = 'none';
         gameContainer.classList.remove('hidden');
         hintContainer.style.display = 'block';
