@@ -346,7 +346,7 @@ img {
 #timer-display-front {
     width: 129px;
     height: 45px;
-    left: 986px;
+    left: 930px;
     font-weight: 800;
 }
 
@@ -356,7 +356,7 @@ img {
 #weather-display-front {
     width: 98px;
     height: 98px;
-    left: 1120px;
+    left: 1065px;
     top: 25px;
 }
 
@@ -366,8 +366,8 @@ img {
 -------------------------------------------------- */
 .ui-panel {
     position: absolute;
-    top: 2rem;
-    left: 2rem;
+    top: 1.3rem;
+    left: 0.5rem;
     right: 2rem;
 
     display: flex;
@@ -647,3 +647,4 @@ img {
     width: 120px;
     flex-shrink: 0;
 }
+
