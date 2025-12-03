@@ -971,10 +971,14 @@ function hideThoughtBubble(character) {
 
 function handleRestock() {
     let restockMessage = `
-        <h3>--- Restock Phase ---</h3>
-        <p>Current Money: ${game.money}</p>
-        <p>Select an item to restock. Prices:</p>
-
+        <p class="flex items-center gap-1 
+            bg-[#4CAF50] border-2 border-[#2e7d32] 
+            rounded-xl px-3 py-1 text-white 
+            shadow-[3px_3px_0px_#2e7d32] w-fit"><i data-lucide="banknote"></i>${game.money}</p>
+         <div class="text-center mt-4">
+            <h3>--- Restock Phase ---</h3>
+            <p>Select an item to restock.</p>
+        </div>
         <div class="grid grid-cols-5 gap-6 mt-6 justify-items-center w-full">
     `;
 
@@ -1010,7 +1014,9 @@ function handleRestock() {
 
 
           <button 
-    class="justify-center mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg
+    class="justify-center mt-2 bg-[#4C91FF] hover:bg-[#3B7DE6] border-2 border-[#275cb5] 
+           text-white font-bold rounded-xl 
+           shadow-[3px_3px_0px_#275cb5] text-white font-bold rounded-lg
            w-12 h-12 flex justify-center items-center mx-auto block" onclick="restockItem('${item.name}')"
 >
     <i data-lucide="shopping-cart"></i>
