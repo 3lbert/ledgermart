@@ -975,13 +975,38 @@ function handleRestock() {
         <p>Current Money: ${game.money}</p>
         <p>Select an item to restock. Prices:</p>
 
-        <div class="grid grid-flow-col grid-rows-2 gap-3 mt-3">
+        <div class="grid grid-cols-5 gap-6 mt-6 justify-items-center w-full">
     `;
 
     game.items.forEach(item => {
         restockMessage += `
-            <div class="p-3 rounded-lg bg-gray-100 flex flex-col justify-between">
-                <span class="text-sm font-medium">${item.name} (Stock: ${item.stock}, Buy: ${item.buyPrice})</span>
+            <div class="p-3 rounded-lg bg-gray-100 flex flex-col justify-between w-36 h-44">
+<div class="flex flex-col items-center text-brown-700">
+
+    <!-- Nama item -->
+    <div class="text-sm font-bold mb-1 whitespace-nowrap overflow-hidden text-ellipsis">
+        ${item.name}
+    </div>
+
+    <!-- Stock -->
+    <div class="grid grid-cols-[40px_10px_auto] text-xs mt-1">
+        <span class="text-left">Stock</span>
+        <span>:</span>
+        <span>${item.stock}</span>
+    </div>
+
+    <!-- Buy Price -->
+    <div class="grid grid-cols-[40px_10px_auto] text-xs mt-0.5">
+        <span class="text-left">Buy</span>
+        <span>:</span>
+        <span>${item.buyPrice}</span>
+    </div>
+
+</div>
+
+
+
+
           <button 
     class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg
            w-12 h-12 flex justify-center items-center" onclick="restockItem('${item.name}')"
@@ -1031,7 +1056,7 @@ function handleSetPrices() {
     <span class="font-semibold text-xs">${item.name}</span>
     <span class="text-xs text-gray-600">Buy: ${item.buyPrice}, Sell: ${item.sellPrice}</span>
 
-    <div class="flex items-center gap-1 mt-2">
+    <div class="flex items-center justify-center gap-2 mt-2">
         <button 
             type="button"
             data-action="dec"
@@ -1044,7 +1069,7 @@ function handleSetPrices() {
             type="number" 
             id="price-input-${item.name}" 
             value="${item.sellPrice}"
-            class="w-5 h-5 text-sm text-center rounded-lg bg-white border border-gray-300"
+            class="w-10 h-7 text-sm text-center rounded-md bg-white border border-gray-300"
         >
 
         <button 
