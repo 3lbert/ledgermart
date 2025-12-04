@@ -4,46 +4,124 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Splash Screen</title>
-  <link rel="stylesheet" href="Splash.css">
+
+  <style>
+    /* Reset */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Poppins", sans-serif;
+      background: #0d0d0d;
+    }
+
+    /* Splash Container */
+    #splash {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #1d1d1d, #0a0a0a);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeOut 0.8s ease-out 1.8s forwards;
+    }
+
+    /* Logo */
+    .splash-logo {
+      width: 350px;
+      max-width: 60%;
+      animation: zoomIn 1.2s ease-out forwards;
+      filter: drop-shadow(0px 0px 20px rgba(255,255,255,0.2));
+    }
+
+    /* Animasi Logo */
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.75); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* Fade out Screen */
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* Loading Bar Container */
+    .loading-bar-wrap {
+      width: 60%;
+      max-width: 420px;
+      height: 12px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 6px;
+      margin-top: 35px;
+      overflow: hidden;
+      backdrop-filter: blur(3px);
+    }
+
+    /* Loading Bar Fill */
+    .loading-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #ffcb21, #ff9100);
+      transition: width 0.25s ease-out;
+      box-shadow: 0 0 10px #ffcb21;
+    }
+
+    /* Loading Text */
+    #loading-text {
+      color: #fff;
+      font-size: 18px;
+      margin-top: 12px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-shadow: 0 0 8px rgba(255,255,255,0.3);
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- Splash Screen -->
   <div id="splash">
-    <img src="BU-SOC Accounting Laboratory-01.png" alt="Logo" class="splash-logo">
-    <div id="loading-text" style="margin-top:15px; color:white; font-size:18px;">
-      Loading...
+    <img src="BU-SOC Accounting Laboratory-01.png" class="splash-logo" alt="Logo">
+
+    <div class="loading-bar-wrap">
+      <div class="loading-bar" id="loading-bar"></div>
     </div>
+
+    <div id="loading-text">Loading...</div>
   </div>
 
   <script>
     window.addEventListener('load', () => {
 
-      // --- Daftar file di root folder (SESUAIKAN dengan punya kamu) ---
+      // --- Daftar file di root folder ---
       const assets = [
         "2.png",
         "alien.png",
         "customer_a.png",
         "customer_b.png",
         "customer_c.png",
-        "thief_run.png"
+        "thief_run.png",
+        "title-background.jpg",
+        "Dalam Toko.png"
       ];
 
       let loaded = 0;
       const loadingText = document.getElementById("loading-text");
+      const loadingBar = document.getElementById("loading-bar");
 
       function preloadAsset(src) {
         return new Promise((resolve) => {
           let el;
 
-          // Jika audio
           if (src.endsWith(".mp3") || src.endsWith(".wav")) {
             el = new Audio();
             el.src = src;
             el.addEventListener("canplaythrough", resolve);
-          } 
-          // Jika gambar
-          else {
+          } else {
             el = new Image();
             el.src = src;
             el.onload = resolve;
@@ -56,13 +134,19 @@
           await preloadAsset(src);
           loaded++;
 
-          // Update status loading (%)
           let percent = Math.floor((loaded / assets.length) * 100);
-          loadingText.textContent = "Loading... " + percent + "%";
+
+          // Update text
+          loadingText.textContent = `Loading... ${percent}%`;
+
+          // Update loading bar
+          loadingBar.style.width = percent + "%";
         }
 
-        // Setelah semua loaded → pindah ke game
-        window.location.href = "toserba game.html";
+        // Setelah load → masuk ke game
+        setTimeout(() => {
+          window.location.href = "toserba game.html";
+        }, 500);
       }
 
       preloadAll();
