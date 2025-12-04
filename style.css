@@ -10,7 +10,7 @@
 body {
     font-family: "Nunito", sans-serif;
     font-style: normal;
-    background-image: url('WhatsApp Image 2025-11-07 at 10.21.33_144d402c.jpg');
+    background-image: url('title-background.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -79,7 +79,8 @@ img {
 }
 
 #modal-content input[type=number] {
-    -moz-appearance: textfield;
+    appearance: textfield;      /* standar */
+    -moz-appearance: textfield; /* Firefox */
 }
 
 #modal-content input::-webkit-outer-spin-button,
@@ -254,106 +255,51 @@ img {
    TIMER + DAY + WEATHER UI
 -------------------------------------------------- */
 
-.timer-panel,
-#day-display-front, #day-display-back,
-#timer-display-front, #timer-display-back,
-#weather-display-front, #weather-display-back,
-#day-display-cover, #timer-display-cover, #weather-display-cover {
+.timer-panel, #day-display, #timer-display, #weather-display {
     position: absolute;
 }
 
 .timer-panel {
-    left: 6.5rem;
+    left: 18rem;
     top: 0rem;
     font-weight: bold;
-    color: #FF7300;
-}
-
-/* Covers */
-#timer-display-cover, #day-display-cover {
-    width: 58px;
-    height: 40px;
-    left: 960px;
-    border-radius: 60px 0 0 60px;
-}
-
-#weather-display-cover {
-    width: 70px;
-    height: 140px;
-    left: 1160px;
-    top: 4px;
-    border-radius: 10px;
-}
-
-/* Cover Positions */
-#day-display-cover   { top: 0.95rem; }
-#timer-display-cover { top: 5.65rem; }
-
-/* Backs */
-#day-display-back,
-#timer-display-back,
-#weather-display-back {
-    background: #FDB606;
-}
-
-#day-display-back {
-    width: 141px;
-    height: 50px;
-    left: 973px;
-    top: 15px;
-}
-
-#timer-display-back {
-    width: 141px;
-    height: 50px;
-    left: 973px;
-    top: 80px;
-}
-
-#weather-display-back {
-    width: 104px;
-    height: 104px;
-    left: 1114px;
-    top: 18px;
+    color: white;
 }
 
 /* Fronts */
-#day-display-front,
-#timer-display-front,
-#weather-display-front {
+#day-display,
+#timer-display,
+#weather-display {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background: #FFE100;
+    background: blue;
 }
 
-#day-display-front,
-#day-display-back {
+#day-display{
     border-radius: 100px 60px 60px 2px;
 }
 
-#timer-display-front,
-#timer-display-back {
+#timer-display{
     border-radius: 2px 60px 60px 100px;
 }
 
-#weather-display-front,
-#weather-display-back {
+#weather-display{
     border-radius: 60px;
 }
 
-#day-display-front,
-#timer-display-front {
+#day-display,
+#timer-display {
     width: 129px;
     height: 45px;
     left: 986px;
     font-weight: 800;
 }
 
-#day-display-front  { top: 20px; }
-#timer-display-front { top: 80px; }
+#day-display  { top: 20px; }
+#timer-display { top: 80px; }
 
-#weather-display-front {
+#weather-display {
     width: 98px;
     height: 98px;
     left: 1120px;
@@ -366,28 +312,16 @@ img {
 -------------------------------------------------- */
 .ui-panel {
     position: absolute;
-    top: 2rem;
+    top: 0.34rem;
     left: 2rem;
-    right: 2rem;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     z-index: 20;
     border-radius: 1rem;
-
     padding: 1rem;
 }
 
-.ui-panel div {
-    padding: 0.5rem 1rem;
-    background-color: #FFE100;
-    border-radius: 0.75rem;
-    color: #FF8C00;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
 
 
 /* --------------------------------------------------

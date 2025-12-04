@@ -42,16 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
    }
     // --- DOM Elements ---
-    const dayDisplay = document.getElementById('day-display-front');
+    const dayDisplay = document.getElementById('day-display');
     const moneyDisplay = document.getElementById('money-display');
-    const weatherDisplay = document.getElementById('weather-display-front');
+    const weatherDisplay = document.getElementById('weather-display');
     const itemStandsContainer = document.getElementById('item-stands-container');
     const controlPanel = document.querySelector('.control-panel');
     const gameModal = document.getElementById('game-modal');
     const modalContent = document.getElementById('modal-content');
     const modalText = document.getElementById('modal-text');
     const modalCloseButton = document.getElementById('modal-close-button');
-    const timerDisplay = document.getElementById('timer-display-front');
+    const timerDisplay = document.getElementById('timer-display');
     const introScreen = document.getElementById('intro-screen');
     const startGameButton = document.getElementById('start-game-button');
     const tutorialButton = document.getElementById('tutorial-button');
@@ -751,16 +751,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Update UI function: add call to updateEventChanceDisplay
 function updateUI() {
-    dayDisplay.textContent = "";
-    const img = document.createElement("img");
-    img.src = "Calendar.png";
-    img.alt = "icon";
-    img.style.width = "30px";
-    img.style.height = "30px";
-    img.style.verticalAlign = "middle";
-    dayDisplay.appendChild(img);
-    dayDisplay.appendChild(document.createTextNode(` Day: ${game.day}`));
-    moneyDisplay.textContent = `Money: ${game.money}`;
+dayDisplay.textContent = "";
+
+// buat elemen ikon lucide
+const icon = document.createElement("i");
+icon.setAttribute("data-lucide", "calendar");
+icon.style.width = "30px";
+icon.style.height = "30px";
+icon.style.verticalAlign = "middle";
+
+// masukkan ikon
+dayDisplay.appendChild(icon);
+
+// tambahkan teks Day
+dayDisplay.appendChild(document.createTextNode(` Day ${game.day}`));
+
+// render ikon lucide
+
+// reset isi
+moneyDisplay.textContent = "";
+
+// tambahkan class tailwind ke container utama
+moneyDisplay.className =
+  "flex flex-row items-center justify-center gap-6 " +          // HORIZONTAL
+  "bg-green-600 border-2 border-green-800 " +
+  "shadow-[3px_3px_0_#14532d] " +
+  "rounded-lg select-none " +
+  "px-4 py-2 w-[150px]"; // width batang (ubah bebas)
+
+// ikon lucide
+const moneyIcon = document.createElement("i");
+moneyIcon.setAttribute("data-lucide", "wallet");
+moneyIcon.className = "w-7 h-7 text-white flex-shrink-0 translate-y-[1px]";
+
+// tambahkan ikon
+moneyDisplay.appendChild(moneyIcon);
+
+// teks money
+const moneyText = document.createElement("span");
+moneyText.textContent = `${game.money}`;
+moneyText.className =
+  "text-xl font-bold tracking-wide text-white whitespace-nowrap leading-none translate-y-[2px]";
+
+// tambahkan teks
+moneyDisplay.appendChild(moneyText);
+
+// render lucide
+lucide.createIcons();
     weatherDisplay.textContent = `${game.weather}`;
     itemStandsContainer.innerHTML = '';
     game.items.forEach(item => {
