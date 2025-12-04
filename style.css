@@ -61,7 +61,7 @@ img {
 
     position: relative;
 
-    background-image: url('https://placehold.co/1200x800/d7bfa5/6b5247?text=Toserba+Background');
+    background-image: url('Dalam\ Toko.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -647,3 +647,4 @@ img {
     width: 120px;
     flex-shrink: 0;
 }
+
