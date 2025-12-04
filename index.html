@@ -1,144 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Supermarket Loading</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Splash Screen</title>
 
 <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: "Baloo 2", sans-serif;
-    background: #f6f7fb;
-    overflow: hidden;
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background:#ffd35a;                 /* kuning komik */
+    height:100vh;
+    overflow:hidden;
+    font-family:'Comic Sans MS', sans-serif;
   }
 
-  /* =======================
-       SUPERMARKET STYLE BG
-     ======================= */
+  /* Container Splash */
   #splash {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(#e3f4ff, #cfeaff);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    animation: fadeOut 0.8s ease-out 2.4s forwards;
+    position:fixed;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    background:#ffd35a;
   }
 
-  /* Rak-rak supermarket bubblish */
-  .bubble {
-    position: absolute;
-    background: #fff;
-    border-radius: 22px;
-    box-shadow: 0px 5px 0px #b6d5e8;
-    animation: float 3s ease-in-out infinite alternate;
-  }
-
-  .b1 { width: 200px; height: 80px; top: 12%; left: 8%; animation-delay: 0s; }
-  .b2 { width: 260px; height: 90px; bottom: 10%; right: 10%; animation-delay: 0.6s; }
-  .b3 { width: 160px; height: 70px; top: 60%; left: 22%; animation-delay: 1.2s; }
-
-  @keyframes float {
-    from { transform: translateY(0); }
-    to { transform: translateY(-18px); }
-  }
-
-  /* =======================
-       LOGO ANIMASI KARTUN
-     ======================= */
+  /* Logo */
   .splash-logo {
-    width: 330px;
-    animation: popCartoon 1.1s cubic-bezier(.25,1.6,.35,1);
-    filter: drop-shadow(8px 8px 0px rgba(0,0,0,0.2));
+    width:320px;
+    filter:drop-shadow(4px 4px 0 #000);
+    animation:bounce 1s ease forwards;
   }
 
-  @keyframes popCartoon {
-    0% { transform: scale(0) rotate(-10deg); }
-    40% { transform: scale(1.25, 0.75) rotate(3deg); }
-    70% { transform: scale(0.9, 1.1) rotate(-2deg); }
-    100% { transform: scale(1) rotate(0deg); }
+  @keyframes bounce {
+    0% { transform:translateY(40px) scale(0.9); opacity:0; }
+    70% { transform:translateY(-10px) scale(1.05); opacity:1; }
+    100% { transform:translateY(0) scale(1); }
   }
 
-  /* =======================
-        CONVEYOR LOADING
-     ======================= */
-  .loading-wrap {
-    width: 70%;
-    max-width: 420px;
-    height: 30px;
-    background: #fff;
-    border: 4px solid #2da4ff;
-    border-radius: 30px;
-    margin-top: 40px;
-    padding: 5px;
-    box-shadow: 0px 6px 0px #1877c1;
+  /* Loading Bar Frame (cartoon style) */
+  .bar-frame {
+    width:60%;
+    height:35px;
+    border:4px solid #000;
+    border-radius:10px;
+    background:white;
+    overflow:hidden;
+    box-shadow:6px 6px 0 #000;
+    position:relative;
   }
 
-  .loading-bar {
-    width: 0%;
-    height: 100%;
-    border-radius: 25px;
-
-    /* Conveyor belt kasir */
-    background: repeating-linear-gradient(
-      -45deg,
-      #ffcd3c,
-      #ffcd3c 15px,
-      #ffb300 15px,
-      #ffb300 30px
-    );
-
-    transition: width .25s ease-out;
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
+  /* Isi bar */
+  .bar-fill {
+    height:100%;
+    width:0%;
+    background:#ff4d4d; /* merah cartoon */
+    transition:width 0.2s ease;
   }
 
+  /* Text */
   #loading-text {
-    margin-top: 12px;
-    font-size: 22px;
-    color: #0b4173;
-    text-shadow: 2px 2px 0px white;
+    font-size:26px;
+    color:#000;
+    font-weight:bold;
+    text-shadow:3px 3px 0 white;
   }
-
-  /* Fade out */
-  @keyframes fadeOut {
-    to { opacity: 0; visibility: hidden; }
-  }
-
 </style>
 </head>
 
 <body>
 
 <div id="splash">
-  <!-- Background elements supermarket -->
-  <div class="bubble b1"></div>
-  <div class="bubble b2"></div>
-  <div class="bubble b3"></div>
+  <img src="BU-SOC Accounting Laboratory-01.png" class="splash-logo" alt="Logo">
 
-  <img src="BU-SOC Accounting Laboratory-01.png" class="splash-logo">
-
-  <div class="loading-wrap">
-    <div class="loading-bar" id="loading-bar"></div>
+  <div class="bar-frame">
+    <div class="bar-fill" id="bar"></div>
   </div>
 
-  <div id="loading-text">Loading...</div>
+  <div id="loading-text">Loading 0%</div>
 </div>
 
 <script>
-/* ===============================
-      SUPER ACURATE PRELOAD
-      ANTI MACET
-      ANTI LONCAT 12% → 37%
-   =============================== */
-
 window.addEventListener("load", () => {
 
+  // ========================================
+  //  SEKALI DIDEFINISIKAN → TIDAK BUG 12%-37%
+  // ========================================
   const assets = [
     "2.png",
     "alien.png",
@@ -149,74 +98,54 @@ window.addEventListener("load", () => {
   ];
 
   let loaded = 0;
-  const loadingText = document.getElementById("loading-text");
-  const loadingBar = document.getElementById("loading-bar");
+  const total = assets.length;
 
-  /* 🔥 Hindari browser cache → progress selalu akurat */
-  function addNoCache(src) {
-    return src + "?v=" + Date.now() + Math.random();
-  }
+  const bar = document.getElementById("bar");
+  const text = document.getElementById("loading-text");
 
-  /* 🔥 Preload anti-stuck */
-  function preloadAsset(src) {
-    return new Promise((resolve) => {
+  function preload(src) {
+    return new Promise(res => {
+      let el;
 
-      // audio
-      if (src.match(/\.(mp3|wav)$/)) {
-        const a = new Audio();
-        a.src = src;
-
-        a.addEventListener("canplaythrough", resolve);
-        a.onerror = resolve;
-
-        setTimeout(resolve, 2000);
-      }
-
-      // image
-      else {
-        const img = new Image();
-        img.src = src;
-
-        img.onload = resolve;
-        img.onerror = resolve;
-
-        setTimeout(resolve, 2000);
+      if (src.endsWith(".mp3") || src.endsWith(".wav")) {
+        el = new Audio();
+        el.src = src;
+        el.addEventListener("canplaythrough", res);
+      } else {
+        el = new Image();
+        el.src = src;
+        el.onload = res;
       }
     });
   }
 
-  /* 🔥 Update UI */
-  function updateProgress() {
-    let percent = Math.floor((loaded / assets.length) * 100);
-    loadingText.textContent = "Loading... " + percent + "%";
-    loadingBar.style.width = percent + "%";
-  }
+  async function startPreload() {
 
-  /* ============================
-       MAIN PRELOAD LOOP
-     ============================ */
-  async function preloadAll() {
     for (let src of assets) {
-      let realSrc = addNoCache(src);
-
-      await preloadAsset(realSrc);   // tetap sesuai logic lama
-
+      await preload(src);
       loaded++;
-      updateProgress();               // progress stabil & berurutan
+
+      let percent = Math.floor((loaded / total) * 100);
+
+      // update UI
+      bar.style.width = percent + "%";
+      text.textContent = "Loading " + percent + "%";
     }
 
-    // jeda sedikit sebelum masuk game
-    setTimeout(() => {
-      window.location.href = "toserba game.html";
-    }, 500);
+    // ===========================================
+    // 100% → LANGSUNG MASUK GAME (NO DELAY)
+    // ===========================================
+    window.location.replace("toserba game.html");
   }
 
-  preloadAll();
+  startPreload();
 });
 </script>
 
 </body>
 </html>
+
+
 
 
 
