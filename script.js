@@ -71,12 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const backgroundMusic = document.getElementById('background-music');
     const uiClick = document.getElementById('ui-click');
     const customerMurmur = document.getElementById('customer-murmur');
-
+    
     const tutorialModal = document.getElementById('tutorial-modal');
     const tutorialCloseButton = document.getElementById('tutorial-close-button');
     const prevTutorialButton = document.getElementById('prev-tutorial-button');
     const nextTutorialButton = document.getElementById('next-tutorial-button');
     const tutorialContent = document.getElementById('tutorial-content');
+
+    const creditsButton = document.getElementById('credits-button'); // ADDED
+    const creditsModal = document.getElementById('credits-modal');   // ADDED
+    const creditsCloseButton = document.getElementById('credits-close-button'); // ADDED
     
     const customerPersonalities = {
         BARGAIN_HUNTER: { name: 'Bargain Hunter', moneyMultiplier: 0.7, impulse: 0.1 },
@@ -150,6 +154,20 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTutorialPage = 0;
         showTutorialPage(currentTutorialPage);
     });
+    
+        // Credits button logic
+    if (creditsButton && creditsModal && creditsCloseButton) {
+        creditsButton.addEventListener('click', () => {
+            uiClick.play();
+            creditsModal.style.display = 'flex';
+            lucide.createIcons();
+        });
+
+        creditsCloseButton.addEventListener('click', () => {
+            uiClick.play();
+            creditsModal.style.display = 'none';
+        });
+    }
 
     settingsButton.addEventListener('click', () => {
         uiClick.play();
@@ -1193,4 +1211,5 @@ document.addEventListener("click", function (e) {
     if (v < 0) v = 0;
 
     input.value = v;
+
 });
