@@ -2,13 +2,14 @@
    IMPORT FONTS
 -------------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 
 
 /* --------------------------------------------------
    GLOBAL STYLES
 -------------------------------------------------- */
 body {
-    font-family: "Nunito", sans-serif;
+    font-family: "Fredoka", sans-serif;
     font-style: normal;
     background-image: url('title-background.jpg');
     background-size: 100% 100%;
@@ -26,7 +27,7 @@ img {
     width: 200px;
     height: 200px;
     object-fit: cover;
-    border-radius: 100px;
+ 
     margin-bottom: 5px;
     animation: Bobbing 1.5s alternate infinite;
 }
@@ -164,63 +165,32 @@ img {
 /* --------------------------------------------------
    ITEM STANDS
 -------------------------------------------------- */
+
 .stands-container {
     position: absolute;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
-
     z-index: 10;
 }
 
 .item-stand {
-    width: 100px;
-    height: 120px;
-
-    position: relative;
-    background-image: url('https://placehold.co/100x120/a1887f/8d6e63?text=Stand');
-    background-size: cover;
-    background-position: center;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 0.5rem;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-
-    transition: transform 0.2s, box-shadow 0.2s;
-}
+    transition: transform 0.2s;
+} 
 
 .item-stand:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 
 .item-stand .item {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     object-fit: contain;
 }
 
-.item-stand .quantity {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-
-    background-color: rgba(0,0,0,0.5);
-    color: white;
-    padding: 2px 8px;
-    font-size: 0.75rem;
-    border-radius: 9999px;
-
-    pointer-events: none;
-}
 
 
 /* --------------------------------------------------

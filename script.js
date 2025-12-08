@@ -1,46 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Game State (mirroring your Python engine) ---
-    const game = {
-        day: 1,
-        money: 1000,
-        weather: 'Cerah',
-        items: [
-            { name: "Sampo", buyPrice: 5, sellPrice: 8, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Shampoo' },
-            { name: "Sabun Mandi", buyPrice: 3, sellPrice: 5, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Soap' },
-            { name: "Sikat Gigi", buyPrice: 2, sellPrice: 4, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Toothbrush' },
-            { name: "Snack", buyPrice: 4, sellPrice: 7, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Snack' },
-            { name: "Coklat", buyPrice: 6, sellPrice: 9, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Chocolate' },
-            { name: "Pasta Gigi", buyPrice: 3, sellPrice: 6, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Toothpaste' },
-            { name: "Air Mineral", buyPrice: 1, sellPrice: 2, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Water' },
-            { name: "Lampu", buyPrice: 10, sellPrice: 15, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Lamp' },
-            { name: "Sabun Cuci Piring", buyPrice: 4, sellPrice: 7, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Dish+Soap' },
-            { name: "Batu Baterai", buyPrice: 2, sellPrice: 4, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Battery' }
-        ],
-        // Add game costs mirroring your Python code
-        sewa: 50,
-        listrik: 20
-    };
-    
-    function resetGame() {
+function createDefaultItems() {
+    return [
+        { name: "Sampo", buyPrice: 5, sellPrice: 8, stock: 10, img: 'Layer 2.png' },
+        { name: "Sabun Mandi", buyPrice: 3, sellPrice: 5, stock: 10, img: 'Layer 4.png' },
+        { name: "Sikat Gigi", buyPrice: 2, sellPrice: 4, stock: 10, img: 'Layer 5.png' },
+        { name: "Snack", buyPrice: 4, sellPrice: 7, stock: 10, img: 'Layer 10.png' },
+        { name: "Coklat", buyPrice: 6, sellPrice: 9, stock: 10, img: 'Layer 8.png' },
+        { name: "Pasta Gigi", buyPrice: 3, sellPrice: 6, stock: 10, img: 'Layer 1.png' },
+        { name: "Air Mineral", buyPrice: 1, sellPrice: 2, stock: 10, img: 'Layer 3.png' },
+        { name: "Lampu", buyPrice: 10, sellPrice: 15, stock: 10, img: 'Layer 6.png' },
+        { name: "Sabun Cuci Piring", buyPrice: 4, sellPrice: 7, stock: 10, img: 'Layer 9.png' },
+        { name: "Batu Baterai", buyPrice: 2, sellPrice: 4, stock: 10, img: 'Layer 7.png' }
+    ];
+}
+
+const DEFAULT_ITEMS = Object.freeze(createDefaultItems());
+
+const game = {
+    day: 1,
+    money: 1000,
+    weather: 'Cerah',
+    sewa: 50,
+    listrik: 20,
+    items: createDefaultItems()
+};
+
+function resetGame() {
     game.day = 1;
     game.money = 1000;
     game.weather = 'Cerah';
     game.sewa = 50;
     game.listrik = 20;
+    game.items = createDefaultItems(); // selalu fresh
+}
 
-    game.items = [
-        { name: "Sampo", buyPrice: 5, sellPrice: 8, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Shampoo' },
-        { name: "Sabun Mandi", buyPrice: 3, sellPrice: 5, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Soap' },
-        { name: "Sikat Gigi", buyPrice: 2, sellPrice: 4, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Toothbrush' },
-        { name: "Snack", buyPrice: 4, sellPrice: 7, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Snack' },
-        { name: "Coklat", buyPrice: 6, sellPrice: 9, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Chocolate' },
-        { name: "Pasta Gigi", buyPrice: 3, sellPrice: 6, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Toothpaste' },
-        { name: "Air Mineral", buyPrice: 1, sellPrice: 2, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Water' },
-        { name: "Lampu", buyPrice: 10, sellPrice: 15, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Lamp' },
-        { name: "Sabun Cuci Piring", buyPrice: 4, sellPrice: 7, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Dish+Soap' },
-        { name: "Batu Baterai", buyPrice: 2, sellPrice: 4, stock: 10, img: 'https://placehold.co/80x80/e7d5bf/6b5247?text=Battery' }
-    ];
-   }
+
+
     // --- DOM Elements ---
     const dayDisplay = document.getElementById('day-display');
     const moneyDisplay = document.getElementById('money-display');
@@ -71,16 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const backgroundMusic = document.getElementById('background-music');
     const uiClick = document.getElementById('ui-click');
     const customerMurmur = document.getElementById('customer-murmur');
-    
+
     const tutorialModal = document.getElementById('tutorial-modal');
     const tutorialCloseButton = document.getElementById('tutorial-close-button');
     const prevTutorialButton = document.getElementById('prev-tutorial-button');
     const nextTutorialButton = document.getElementById('next-tutorial-button');
     const tutorialContent = document.getElementById('tutorial-content');
-
-    const creditsButton = document.getElementById('credits-button'); // ADDED
-    const creditsModal = document.getElementById('credits-modal');   // ADDED
-    const creditsCloseButton = document.getElementById('credits-close-button'); // ADDED
     
     const customerPersonalities = {
         BARGAIN_HUNTER: { name: 'Bargain Hunter', moneyMultiplier: 0.7, impulse: 0.1 },
@@ -154,20 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTutorialPage = 0;
         showTutorialPage(currentTutorialPage);
     });
-    
-        // Credits button logic
-    if (creditsButton && creditsModal && creditsCloseButton) {
-        creditsButton.addEventListener('click', () => {
-            uiClick.play();
-            creditsModal.style.display = 'flex';
-            lucide.createIcons();
-        });
-
-        creditsCloseButton.addEventListener('click', () => {
-            uiClick.play();
-            creditsModal.style.display = 'none';
-        });
-    }
 
     settingsButton.addEventListener('click', () => {
         uiClick.play();
@@ -791,7 +769,7 @@ moneyDisplay.textContent = "";
 
 // tambahkan class tailwind ke container utama
 moneyDisplay.className =
-  "flex flex-row items-center justify-center gap-6 " +          // HORIZONTAL
+  "flex flex-row items-center justify-center gap-3 " +          // HORIZONTAL
   "bg-green-600 border-2 border-green-800 " +
   "shadow-[3px_3px_0_#14532d] " +
   "rounded-lg select-none " +
@@ -799,8 +777,8 @@ moneyDisplay.className =
 
 // ikon lucide
 const moneyIcon = document.createElement("i");
-moneyIcon.setAttribute("data-lucide", "wallet");
-moneyIcon.className = "w-7 h-7 text-white flex-shrink-0 translate-y-[1px]";
+moneyIcon.setAttribute("data-lucide", "dollar-sign");
+moneyIcon.className = "w-7 h-7 text-white flex-shrink-0 translate-y-[2px]";
 
 // tambahkan ikon
 moneyDisplay.appendChild(moneyIcon);
@@ -820,16 +798,13 @@ lucide.createIcons();
     itemStandsContainer.innerHTML = '';
     game.items.forEach(item => {
         const stand = document.createElement('div');
-        stand.className = 'item-stand relative bg-[#a1887f] rounded-lg cursor-pointer';
+        stand.className = 'item-stand relative cursor-pointer';
         stand.innerHTML = `
             <img src="${item.img}" alt="${item.name}" class="item mt-2">
-            <div class="quantity">${item.stock}</div>
-            <div class="text-sm font-semibold text-white mt-1">${item.name}</div>
-            <div class="text-xs text-white opacity-80">Sell: ${item.sellPrice}</div>
         `;
         itemStandsContainer.appendChild(stand);
         stand.addEventListener('click', () => {
-            showModal(`You selected ${item.name} with a stock of ${item.stock}.`);
+            showModal(`You selected ${item.name} with a stock of ${item.stock}. Price : ${item.sellPrice}`);
         });
     });
     updateEventChanceDisplay(); // <-- Add this line
@@ -1211,5 +1186,4 @@ document.addEventListener("click", function (e) {
     if (v < 0) v = 0;
 
     input.value = v;
-
 });
