@@ -2,16 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Game State (mirroring your Python engine) ---
 function createDefaultItems() {
     return [
-        { name: "Sampo", buyPrice: 5, sellPrice: 8, stock: 10, img: 'Layer 2.png' },
-        { name: "Sabun Mandi", buyPrice: 3, sellPrice: 5, stock: 10, img: 'Layer 4.png' },
-        { name: "Sikat Gigi", buyPrice: 2, sellPrice: 4, stock: 10, img: 'Layer 5.png' },
-        { name: "Snack", buyPrice: 4, sellPrice: 7, stock: 10, img: 'Layer 10.png' },
-        { name: "Coklat", buyPrice: 6, sellPrice: 9, stock: 10, img: 'Layer 8.png' },
-        { name: "Pasta Gigi", buyPrice: 3, sellPrice: 6, stock: 10, img: 'Layer 1.png' },
-        { name: "Air Mineral", buyPrice: 1, sellPrice: 2, stock: 10, img: 'Layer 3.png' },
-        { name: "Lampu", buyPrice: 10, sellPrice: 15, stock: 10, img: 'Layer 6.png' },
-        { name: "Sabun Cuci Piring", buyPrice: 4, sellPrice: 7, stock: 10, img: 'Layer 9.png' },
-        { name: "Batu Baterai", buyPrice: 2, sellPrice: 4, stock: 10, img: 'Layer 7.png' }
+        { name: "Sampo", buyPrice: 5, sellPrice: 8, stock: 10, img: 'Layer 2.webp' },
+        { name: "Sabun Mandi", buyPrice: 3, sellPrice: 5, stock: 10, img: 'Layer 4.webp' },
+        { name: "Sikat Gigi", buyPrice: 2, sellPrice: 4, stock: 10, img: 'Layer 5.webp' },
+        { name: "Snack", buyPrice: 4, sellPrice: 7, stock: 10, img: 'Layer 10.webp' },
+        { name: "Coklat", buyPrice: 6, sellPrice: 9, stock: 10, img: 'Layer 8.webp' },
+        { name: "Pasta Gigi", buyPrice: 3, sellPrice: 6, stock: 10, img: 'Layer 1.webp' },
+        { name: "Air Mineral", buyPrice: 1, sellPrice: 2, stock: 10, img: 'Layer 3.webp' },
+        { name: "Lampu", buyPrice: 10, sellPrice: 15, stock: 10, img: 'Layer 6.webp' },
+        { name: "Sabun Cuci Piring", buyPrice: 4, sellPrice: 7, stock: 10, img: 'Layer 9.webp' },
+        { name: "Batu Baterai", buyPrice: 2, sellPrice: 4, stock: 10, img: 'Layer 7.webp' }
     ];
 }
 
@@ -1186,4 +1186,5 @@ document.addEventListener("click", function (e) {
     if (v < 0) v = 0;
 
     input.value = v;
+
 });
