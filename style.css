@@ -123,9 +123,9 @@ img {
 }
 
 /* Character Types */
-.character.bargain-hunter img { width: 30%; content: url('customer_a.png'); }
-.character.average-joe img   { width: 30%; content: url('customer_b.png'); }
-.character.big-spender img   { width: 30%; content: url('customer_c.png'); }
+.character.bargain-hunter img { width: 30%; content: url('customer_a.webp'); }
+.character.average-joe img   { width: 30%; content: url('customer_b.webp'); }
+.character.big-spender img   { width: 30%; content: url('customer_c.webp'); }
 
 /* Special Characters */
 .character.alien-special,
@@ -551,6 +551,7 @@ img {
     width: 120px;
     flex-shrink: 0;
 }
+
 
 
 
