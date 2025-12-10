@@ -132,7 +132,7 @@ function resetGame() {
         hintContainer.style.display = 'block';
         gameModal.style.display = 'none';
         controlPanel.style.display = 'none';
-        itemStandsContainer.classList.remove("mb-20");
+        
         // Initial UI render and game start
         initializeAudio();
         updateUI();
@@ -242,7 +242,7 @@ function resetGame() {
     endOfDayReportCloseButton.addEventListener('click', () => {
         endOfDayReportModal.style.display = 'none';
         controlPanel.style.display = 'flex'; // Show management buttons
-        itemStandsContainer.classList.add("mb-20");
+
     });
 
     // --- Tutorial Modal Logic ---
@@ -989,7 +989,7 @@ function hideThoughtBubble(character) {
     game.weather = Math.random() > 0.5 ? 'Cerah' : 'Hujan';
     gameModal.style.display = 'none';
     controlPanel.style.display = 'none';
-    itemStandsContainer .classList.remove("mb-20");
+
     updateUI();
     manageCustomers();
     // Increase event chances by 10% each new day
@@ -1188,4 +1188,5 @@ document.addEventListener("click", function (e) {
     input.value = v;
 
 });
+
 
