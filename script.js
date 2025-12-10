@@ -362,7 +362,7 @@ function resetGame() {
         alien.style.top = '';
         alien.dataset.alienId = id;
         alien.dataset.hits = Math.floor(Math.random() * 3) + 1; // 1-3 hits
-        alien.innerHTML = `<img src="alien.png"><div class="hit-counter">${alien.dataset.hits}</div>`;
+        alien.innerHTML = `<img src="alien.webp"><div class="hit-counter">${alien.dataset.hits}</div>`;
         return alien;
     }
     
@@ -374,7 +374,7 @@ function resetGame() {
         thief.style.bottom = '33%';
         thief.style.top = '';
         thief.dataset.hits = Math.floor(Math.random() * 3) + 2; // 2-4 hits
-        thief.innerHTML = `<img src="thief_run.png"><div class="hit-counter">${thief.dataset.hits}</div>`;
+        thief.innerHTML = `<img src="thief_run.webp"><div class="hit-counter">${thief.dataset.hits}</div>`;
         return thief;
     }
     
@@ -1188,3 +1188,4 @@ document.addEventListener("click", function (e) {
     input.value = v;
 
 });
+
