@@ -747,22 +747,8 @@ function resetGame() {
 
 // Update UI function: add call to updateEventChanceDisplay
 function updateUI() {
-dayDisplay.textContent = "";
+dayDisplay.textContent = `${game.day}`;
 
-// buat elemen ikon lucide
-const icon = document.createElement("i");
-icon.setAttribute("data-lucide", "calendar");
-icon.style.width = "30px";
-icon.style.height = "30px";
-icon.style.verticalAlign = "middle";
-
-// masukkan ikon
-dayDisplay.appendChild(icon);
-
-// tambahkan teks Day
-dayDisplay.appendChild(document.createTextNode(` Day ${game.day}`));
-
-// render ikon lucide
 
 // reset isi
 moneyDisplay.textContent = "";
@@ -1188,6 +1174,7 @@ document.addEventListener("click", function (e) {
     input.value = v;
 
 });
+
 
 
 
