@@ -62,7 +62,7 @@ img {
 
     position: relative;
 
-    background-image: url('Dalam\ Toko.png');
+    background-image: url('Dalam\ Toko.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -551,6 +551,7 @@ img {
     width: 120px;
     flex-shrink: 0;
 }
+
 
 
 
