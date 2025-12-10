@@ -383,7 +383,7 @@ function resetGame() {
         let seconds = 0;
         const startOffset = 9 * 60;
         const endOffset = 21 * 60;
-        timerDisplay.textContent = 'Time: 09:00';
+        timerDisplay.textContent = '09 : 00';
         controlPanel.style.display = 'none';
     
         if (dayTimerInterval) clearInterval(dayTimerInterval);
@@ -531,7 +531,7 @@ function resetGame() {
             // --- End of Day ---
             if (seconds >= duration) {
                 clearInterval(dayTimerInterval);
-                timerDisplay.textContent = 'Time: 21:00';
+                timerDisplay.textContent = '21 : 00';
     
                 // Animate all visible customers to leave before ending the day
                 const visibleCustomers = document.querySelectorAll('.character.visible:not(.alien-special):not(.thief-special)');
@@ -560,7 +560,7 @@ function resetGame() {
             const hrs = Math.floor(totalMinutes / 60).toString().padStart(2, '0');
             const minsTens = Math.floor((totalMinutes % 60) / 10) * 10;
             const mins = minsTens.toString().padStart(2, '0');
-            timerDisplay.textContent = `Time: ${hrs}:${mins}`;
+            timerDisplay.textContent = `${hrs} : ${mins}`;
     
             // --- Manage Customers ---
             if (seconds % 3 === 0) {
@@ -1188,5 +1188,6 @@ document.addEventListener("click", function (e) {
     input.value = v;
 
 });
+
 
 
