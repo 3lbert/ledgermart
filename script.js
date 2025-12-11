@@ -33,6 +33,7 @@ function resetGame() {
     game.sewa = 50;
     game.listrik = 20;
     game.items = createDefaultItems(); // selalu fresh
+    audioInitialized = false;
 }
 
 
@@ -165,7 +166,9 @@ function resetGame() {
 
         // Stop all game sounds
         backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
         customerMurmur.pause();
+        customerMurmur.currentTime = 0;
 
         // Stop the day timer
         if (dayTimerInterval) {
@@ -1174,6 +1177,7 @@ document.addEventListener("click", function (e) {
     input.value = v;
 
 });
+
 
 
 
