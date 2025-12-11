@@ -166,29 +166,102 @@ img {
    ITEM STANDS
 -------------------------------------------------- */
 
+/* Container besar untuk semua rak */
 .stands-container {
     position: absolute;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
+    
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, auto); /* 3 kolom seperti gambar */
+    gap: 25px 40px; /* jarak antar rak */
+    
     z-index: 10;
 }
 
-.item-stand {
-    transition: transform 0.2s;
-} 
 
+/* Rak yang menampung item */
+.stands-2, .stands-1 {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+
+/* Rak dengan 2 slot */
+.stands-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+}
+
+/* Rak dengan 1 slot */
+.stands-1 {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+
+/* ITEM */
+.item-stand {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s; /* efek tetap */
+}
+
+/* Hover tetap */
 .item-stand:hover {
     transform: translateY(-5px);
 }
 
+/* Gambar item */
 .item-stand .item {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
+}
+
+#container-1{
+    position: absolute;
+    bottom: 300px;
+    right: 360px;
+}
+#container-2{
+    position: absolute;
+    bottom: 50px;
+    right: 350px;
+}
+
+#container-3{
+    position: absolute;
+    bottom: 60px;
+    right: 70px;
+    display: flex;
+    flex-direction: column; /* bikin isi jadi kolom */
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+#container-4{
+    position: absolute;
+    bottom: 10px;
+    left: 100px;
+}
+
+#container-5{
+    position: absolute;
+    bottom: 190px;
+    left: 100px;
+}
+
+#container-6{
+    position: absolute;
+    bottom: 50px;
+    left: 350px;
 }
 
 
@@ -564,6 +637,7 @@ img {
     width: 120px;
     flex-shrink: 0;
 }
+
 
 
 
