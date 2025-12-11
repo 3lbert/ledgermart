@@ -784,7 +784,24 @@ moneyDisplay.appendChild(moneyText);
 // render lucide
 lucide.createIcons();
     weatherDisplay.textContent = `${game.weather}`;
-    itemStandsContainer.innerHTML = '';
+    // Ambil semua container rak
+    const rackContainers = [
+        document.getElementById("container-1"), // max 2
+        document.getElementById("container-2"), // max 2
+        document.getElementById("container-3"), // max 2
+        document.getElementById("container-4"), // max 1
+        document.getElementById("container-5"), // max 1
+        document.getElementById("container-6")  // max 2
+    ];
+    
+    // Kapasitas setiap container
+    const rackCapacities = [2, 2, 2, 1, 1, 2];
+    
+    // Bersihkan dulu
+    rackContainers.forEach(rack => rack.innerHTML = "");
+    
+    // Index untuk melacak item ke berapa
+    let itemIndex = 0;
     game.items.forEach(item => {
         const stand = document.createElement('div');
         stand.className = 'item-stand relative cursor-pointer';
@@ -795,6 +812,12 @@ lucide.createIcons();
         stand.addEventListener('click', () => {
             showModal(`You selected ${item.name} with a stock of ${item.stock}. Price : ${item.sellPrice}`);
         });
+        for (let i = 0; i < rackContainers.length; i++) {
+        if (rackContainers[i].children.length < rackCapacities[i]) {
+            rackContainers[i].appendChild(stand);
+            break;
+        }
+    }
     });
     updateEventChanceDisplay(); // <-- Add this line
 }
@@ -1177,6 +1200,7 @@ document.addEventListener("click", function (e) {
     input.value = v;
 
 });
+
 
 
 
