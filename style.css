@@ -302,9 +302,8 @@ img {
 }
 
 #display-day{
-    /* bottom: 620px; */
     right: 255px;
-    top: clamp(0vh, 0vh, 0vh);
+    bottom: clamp(85vh, 100vh, 80vh);
 }
 
 #timer-display{
@@ -313,12 +312,13 @@ img {
 }
 
 #weather-display{
-    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: clamp(5vh, 77vh, 100vh);
     left: 226px;
     width: 183px;
-    height: 195px;
-    justify-items: center;
-    text-align: center;
+    height: 1000px;
     background-color: blue;
     color: white;
 }
@@ -597,6 +597,7 @@ img {
     width: 120px;
     flex-shrink: 0;
 }
+
 
 
 
