@@ -74,6 +74,9 @@ function resetGame() {
     const prevTutorialButton = document.getElementById('prev-tutorial-button');
     const nextTutorialButton = document.getElementById('next-tutorial-button');
     const tutorialContent = document.getElementById('tutorial-content');
+    const creditsButton = document.getElementById('credits-button'); // ADDED
+    const creditsModal = document.getElementById('credits-modal');   // ADDED
+    const creditsCloseButton = document.getElementById('credits-close-button'); // ADDED
     
     const customerPersonalities = {
         BARGAIN_HUNTER: { name: 'Bargain Hunter', moneyMultiplier: 0.7, impulse: 0.1 },
@@ -157,6 +160,20 @@ function resetGame() {
         uiClick.play();
         settingsModal.style.display = 'none';
     });
+
+            // Credits button logic
+    if (creditsButton && creditsModal && creditsCloseButton) {
+        creditsButton.addEventListener('click', () => {
+            uiClick.play();
+            creditsModal.style.display = 'flex';
+            lucide.createIcons();
+        });
+
+        creditsCloseButton.addEventListener('click', () => {
+            uiClick.play();
+            creditsModal.style.display = 'none';
+        });
+    }
 
     mainMenuButton.addEventListener('click', () => {
         uiClick.play();
@@ -1200,6 +1217,7 @@ document.addEventListener("click", function (e) {
     input.value = v;
 
 });
+
 
 
 
