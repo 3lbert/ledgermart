@@ -226,12 +226,12 @@ img {
 
 #container-1{
     position: absolute;
-    bottom: 300px;
+    bottom: clamp(40vh, 30vh, 40vh);
     right: 360px;
 }
 #container-2{
     position: absolute;
-    bottom: 50px;
+    bottom: clamp(11vh, 2vh, 11vh);
     right: 350px;
 }
 
@@ -248,9 +248,10 @@ img {
 
 #container-4{
     position: absolute;
-    bottom: 10px;
+    bottom: clamp(2vh, 5vh, 8vh);
     left: 100px;
 }
+
 
 #container-5{
     position: absolute;
@@ -260,10 +261,9 @@ img {
 
 #container-6{
     position: absolute;
-    bottom: 50px;
+    bottom: clamp(2vh, 10vh, 40vh);
     left: 350px;
 }
-
 
 
 /* --------------------------------------------------
@@ -597,6 +597,7 @@ img {
     width: 120px;
     flex-shrink: 0;
 }
+
 
 
 
