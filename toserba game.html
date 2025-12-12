@@ -37,6 +37,26 @@
 
         </div>
 
+<div id="user-creation-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-[1000]">
+    <div class="relative bg-amber-300 border-4 border-amber-800 shadow-[10px_10px_0_#6c3f10] rounded-xl p-6 w-[500px]">
+        <h2 class="text-3xl font-extrabold text-amber-900 mb-4 text-center">Create Your Character</h2>
+        <div class="flex flex-col gap-4">
+            <input type="text" id="username-input" placeholder="Enter your username" class="w-full p-3 rounded-lg border-2 border-amber-800 focus:outline-none focus:border-amber-600">
+            <div class="flex justify-center gap-4">
+                <button id="male-button" class="gender-button flex-1 py-3 rounded-lg bg-blue-600 border-2 border-blue-800 shadow-[3px_3px_0_#173971] text-white font-semibold tracking-wide transition-all duration-150 hover:bg-blue-700 hover:shadow-[1px_1px_0_#173971]">
+                    Male
+                </button>
+                <button id="female-button" class="gender-button flex-1 py-3 rounded-lg bg-pink-600 border-2 border-pink-800 shadow-[3px_3px_0_#711742] text-white font-semibold tracking-wide transition-all duration-150 hover:bg-pink-700 hover:shadow-[1px_1px_0_#711742]">
+                    Female
+                </button>
+            </div>
+            <button id="enter-game-button" class="w-full py-3 rounded-lg bg-green-600 border-2 border-green-800 shadow-[3px_3px_0_#14532d] text-white font-semibold tracking-wide transition-all duration-150 hover:bg-green-700 hover:shadow-[1px_1px_0_#14532d]">
+                Enter Game
+            </button>
+        </div>
+    </div>
+</div>
+
       <div id="tutorial-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-[1000]">
         <div class="relative bg-amber-300 border-4 border-amber-800 shadow-[10px_10px_0_#6c3f10] rounded-xl p-6 w-[500px]">
             <h2 class="text-3xl font-extrabold text-amber-900 mb-4 text-center">Tutorial</h2>
@@ -358,6 +378,7 @@
 </body>
 
 </html>
+
 
 
 
