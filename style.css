@@ -318,7 +318,7 @@ img {
     bottom: clamp(37.5rem, 77vh, 100vh);
     left: 226px;
     width: 183px;
-    height: 1000px;
+    height: 198px;
     background-color: blue;
     color: white;
 }
@@ -597,6 +597,7 @@ img {
     width: 120px;
     flex-shrink: 0;
 }
+
 
 
 
