@@ -68,7 +68,11 @@ function resetGame() {
     const backgroundMusic = document.getElementById('background-music');
     const uiClick = document.getElementById('ui-click');
     const customerMurmur = document.getElementById('customer-murmur');
-
+    const userCreationModal = document.getElementById('user-creation-modal');
+    const usernameInput = document.getElementById('username-input');
+    const maleButton = document.getElementById('male-button');
+    const femaleButton = document.getElementById('female-button');
+    const enterGameButton = document.getElementById('enter-game-button');
     const tutorialModal = document.getElementById('tutorial-modal');
     const tutorialCloseButton = document.getElementById('tutorial-close-button');
     const prevTutorialButton = document.getElementById('prev-tutorial-button');
@@ -130,7 +134,28 @@ function resetGame() {
     }
     // --- Intro Screen Logic ---
     startGameButton.addEventListener('click', () => {
+        uiClick.play();
         resetGame();
+        userCreationModal.style.display = 'flex';
+    });
+    
+    enterGameButton.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        if (username === '') {
+            alert('Please enter a username.');
+            return;
+        }
+
+        const gender = maleButton.classList.contains('selected') ? 'male' : femaleButton.classList.contains('selected') ? 'female' : null;
+        if (!gender) {
+            alert('Please select a gender.');
+            return;
+        }
+
+        // Store player info (optional, can be expanded)
+        game.player = { username, gender };
+
+        userCreationModal.style.display = 'none';
         introScreen.style.display = 'none';
         gameContainer.classList.remove('hidden');
         hintContainer.style.display = 'block';
@@ -142,6 +167,16 @@ function resetGame() {
         updateUI();
         manageCustomers();
         runDayTimer(35);
+    });
+
+    maleButton.addEventListener('click', () => {
+        maleButton.classList.add('selected');
+        femaleButton.classList.remove('selected');
+    });
+
+    femaleButton.addEventListener('click', () => {
+        femaleButton.classList.add('selected');
+        maleButton.classList.remove('selected');
     });
 
     tutorialButton.addEventListener('click', () => {
@@ -1217,6 +1252,7 @@ document.addEventListener("click", function (e) {
     input.value = v;
 
 });
+
 
 
 
