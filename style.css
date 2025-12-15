@@ -598,6 +598,12 @@ img {
     flex-shrink: 0;
 }
 
+.gender-button.selected {
+    border-color: #f59e0b; /* amber-500 */
+    transform: scale(1.1);
+    box-shadow: 0 0 35px 5px rgba(245, 158, 11, 0.9);
+}
+
 
 
 
