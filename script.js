@@ -301,42 +301,98 @@ function resetGame() {
     });
 
     // --- Tutorial Modal Logic ---
-    const tutorialPages = [
+const tutorialPages = [
         {
             title: "Welcome to LedgerMart!",
             content: "This tutorial will guide you through the basics of managing your own Toserba (small shop). Your goal is to make as much profit as possible.",
-            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Welcome"
+            img: "image.png"
         },
         {
-            title: "The Interface",
-            content: "On the main screen, you\'ll see your shop. At the top, you can see the current day, your money, and the weather. The control panel at the bottom has buttons to manage your shop.",
-            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Interface"
+            title: "Start Game",
+            content: "Begins the game, allowing the player to start a new adventure.",
+            img: "image.png"
         },
         {
-            title: "Stocking Items",
-            content: "Click the \'Restock\' button to buy new items for your shop. You can choose from a variety of products. Keep an eye on your money!",
-            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Restock"
+            title: "Select Your Character",
+            content: "After starting the game, you can select your character by entering a username and selecting a gender.",
+            img: "tutorial_character_creation.jpeg"
         },
         {
-            title: "Setting Prices",
-            content: "Use the \'Set Prices\' button to adjust the selling price of your items. Finding the right price is key to attracting customers and making a profit.",
-            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Set+Prices"
+            title: "Inside the Shop",
+            content: "This is your shop! Customers will come in, and you'll manage your inventory and sales from here.",
+            img: "tutorial_shop_interior.jpeg"
         },
         {
-            title: "Customers",
-            content: "Customers will come to your shop throughout the day. They will have items they want to buy in a thought bubble. Click on the customer to sell the item.",
-            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Customers"
+            title: "Alien Alert!",
+            content: "Sometimes, an alien will try to invade your shop! An alert will appear on the screen.",
+            img: "tutorial_alien_alert.jpeg"
         },
         {
-            title: "Special Events",
-            content: "Beware of thieves and aliens! They can appear randomly and disrupt your business. Click on them quickly to make them go away.",
-            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=Special+Events"
+            title: "Kick the Alien!",
+            content: "Quickly click on the alien to kick it out of your shop before it causes any trouble.",
+            img: "tutorial_alien_kick.jpeg"
         },
         {
-            title: "End of Day",
-            content: "At the end of each day, you\'ll get a report summarizing your sales and profits. Use this information to plan for the next day. Click \'Next Day\' to continue.",
-            img: "https://placehold.co/400x200/e7d5bf/6b5247?text=End+of+Day"
-        }
+            title: "Weather",
+            content: "The weather can affect the number of customers you get. Keep an eye on the forecast to anticipate busy or slow days.",
+            img: "tutorial_weather.png"
+        },
+        {
+            title: "End of Day Report",
+            content: "At the end of each day, you will receive a report that summarizes your sales, profits, and other important information.",
+            img: "tutorial_end_of_day_report_1.png"
+        },
+        {
+            title: "End of Day Report",
+            content: "This report will help you make better decisions for the next day.",
+            img: "tutorial_end_of_day_report_2.png"
+        },
+        {
+            title: "Next Day",
+            content: "After reviewing your report, you can click the \'Next Day\' button to start a new day.",
+            img: "tutorial_next_day.png"
+        },
+        {
+            title: "Main Menu",
+            content: "You can return to the main menu at any time by clicking the \'Main Menu\' button.",
+            img: "tutorial_main_menu.png"
+        },
+        {
+            title: "Restock",
+            content: "Click the \'Restock\' button to buy new items for your shop.",
+            img: "tutorial_restock.png"
+        },
+        {
+            title: "Set Price",
+            content: "Use the \'Set Prices\' button to adjust the selling price of your items.",
+            img: "tutorial_set_price.png"
+        },
+        {
+            title: "View Report",
+            content: "You can view past daily reports by clicking the \'View Report\' button.",
+            img: "tutorial_view_report.png"
+        },
+        {
+            title: "Winning the Game",
+            content: "You win the game by reaching the target profit within 30 days. Good luck!",
+            img: "tutorial_win_screen.png"
+        },
+        {
+            title: "Losing the Game",
+            content: "If you run out of money or fail to reach the profit goal in 30 days, you lose. Don't let that happen!",
+            img: "tutorial_lose_screen.png"
+        },
+
+        {
+            title: "Settings",
+            content: "Opens a settings menu to adjust audio volume.",
+            img: "Screenshot 2025-12-22 113922.png"
+        },
+        {
+            title: "Credits",
+            content: "Displays the list of people who created the game.",
+            img: "Screenshot 2025-12-22 113939.png"
+        },
     ];
 
     let currentTutorialPage = 0;
@@ -1252,6 +1308,7 @@ document.addEventListener("click", function (e) {
     input.value = v;
 
 });
+
 
 
 
