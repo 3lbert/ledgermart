@@ -23,7 +23,7 @@ const game = {
     weather: 'Cerah',
     sewa: 50,
     listrik: 20,
-    items: createDefaultItems()
+    items: createDefaultItems(DEFAULT_ITEMS)
 };
 
 function resetGame() {
@@ -32,7 +32,7 @@ function resetGame() {
     game.weather = 'Cerah';
     game.sewa = 50;
     game.listrik = 20;
-    game.items = createDefaultItems(); // selalu fresh
+    game.items = createDefaultItems(DEFAULT_ITEMS); // selalu fresh
     audioInitialized = false;
 }
 
@@ -1308,6 +1308,7 @@ document.addEventListener("click", function (e) {
     input.value = v;
 
 });
+
 
 
 
